@@ -1042,11 +1042,24 @@ function searchKnowledgeBase(query) {
     `).join("");
 }
 
-function openSearchArticle(slug) {
+async function openSearchArticle(slug) {
     document.getElementById("kb-search-results").classList.add("hidden");
     document.getElementById("kb-search").value = "";
     document.getElementById("kb-search-clear").classList.remove("active");
-    openArticle(slug);
+
+    document.getElementById("main-homepage-view").classList.add("hidden");
+    document.getElementById("primary-global-footer").classList.add("hidden");
+    document.getElementById("custom-profile-view").classList.add("hidden");
+    document.getElementById("knowledge-base-view").classList.remove("hidden");
+
+    document.getElementById("kb-title").innerText = "Knowledge Base";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+    await openArticle(slug);
 }
 
 function clearKnowledgeSearch() {
