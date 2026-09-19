@@ -36,6 +36,196 @@
             background-size: 40px 40px;
         }
     </style>
+
+<style id="knowledge-search-styles">
+.kb-search-wrapper {
+    max-width: 680px;
+    margin: 0 auto 55px;
+    position: relative;
+    z-index: 20;
+}
+
+.kb-search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 48px;
+    background: rgba(18, 26, 46, 0.88);
+    border: 1px solid rgba(71, 85, 105, 0.7);
+    border-radius: 999px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(14px);
+    transition: all 0.3s ease;
+}
+
+.kb-search-box:focus-within {
+    border-color: rgba(0, 240, 255, 0.7);
+    box-shadow:
+        0 0 0 3px rgba(0, 240, 255, 0.07),
+        0 12px 45px rgba(0, 240, 255, 0.08);
+    transform: translateY(-1px);
+}
+
+.kb-search-icon {
+    color: #00F0FF;
+    font-size: 22px;
+    margin-left: 18px;
+    margin-right: 10px;
+    line-height: 1;
+}
+
+#kb-search {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #E2E8F0;
+    font-size: 13px;
+    padding-right: 45px;
+}
+
+#kb-search::placeholder {
+    color: #64748B;
+}
+
+#kb-search-clear {
+    position: absolute;
+    right: 17px;
+    color: #64748B;
+    font-size: 19px;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s ease;
+}
+
+#kb-search-clear.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#kb-search-clear:hover {
+    color: #FF4A5A;
+}
+
+.kb-search-results {
+    position: absolute;
+    top: 58px;
+    left: 0;
+    right: 0;
+    max-height: 390px;
+    overflow-y: auto;
+    background: rgba(11, 17, 30, 0.97);
+    border: 1px solid rgba(51, 65, 85, 0.9);
+    border-radius: 18px;
+    padding: 8px;
+    backdrop-filter: blur(18px);
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.55),
+        0 0 30px rgba(0, 240, 255, 0.04);
+}
+
+.kb-search-results::-webkit-scrollbar {
+    width: 5px;
+}
+
+.kb-search-results::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 999px;
+}
+
+.kb-result-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 14px 16px;
+    border: 1px solid transparent;
+    border-radius: 13px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    animation: kbResultIn 0.25s ease both;
+}
+
+.kb-result-card:hover {
+    background: rgba(18, 26, 46, 0.9);
+    border-color: rgba(0, 240, 255, 0.22);
+    transform: translateX(3px);
+}
+
+.kb-result-info {
+    min-width: 0;
+}
+
+.kb-result-title {
+    color: #F8FAFC;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.kb-result-category {
+    margin-top: 4px;
+    color: #64748B;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+.kb-result-arrow {
+    flex-shrink: 0;
+    color: #00F0FF;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.kb-no-results {
+    padding: 28px 18px;
+    text-align: center;
+    color: #64748B;
+    font-size: 12px;
+}
+
+.kb-no-results strong {
+    display: block;
+    color: #CBD5E1;
+    margin-bottom: 5px;
+}
+
+@keyframes kbResultIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 640px) {
+    .kb-search-wrapper {
+        margin-bottom: 40px;
+    }
+
+    .kb-search-box {
+        height: 46px;
+    }
+
+    .kb-search-results {
+        max-height: 320px;
+    }
+
+    .kb-result-card {
+        padding: 13px;
+    }
+}
+</style>
+
 </head>
 <body class="font-sans antialiased grid-bg">
 
@@ -189,6 +379,22 @@ Access Labs
                 practical research notes, offensive security methodologies and
                 information gathering guides.
             </p>
+        </div>
+
+
+        <div class="kb-search-wrapper">
+            <div class="kb-search-box">
+                <span class="kb-search-icon">⌕</span>
+                <input
+                    id="kb-search"
+                    type="text"
+                    placeholder="Search articles, vulnerabilities, techniques..."
+                    autocomplete="off"
+                    oninput="searchKnowledgeBase(this.value)"
+                >
+                <span id="kb-search-clear" onclick="clearKnowledgeSearch()">×</span>
+            </div>
+            <div id="kb-search-results" class="kb-search-results hidden"></div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -772,6 +978,105 @@ SUPABASE_URL +
 "/functions/v1/update-article";
 
 let knowledgeArticles = [];
+
+
+function searchKnowledgeBase(query) {
+    const results = document.getElementById("kb-search-results");
+    const clear = document.getElementById("kb-search-clear");
+
+    query = query.trim();
+
+    clear.classList.toggle("active", query.length > 0);
+
+    if (!query) {
+        results.classList.add("hidden");
+        results.innerHTML = "";
+        return;
+    }
+
+    if (knowledgeArticles.length === 0) {
+        loadKnowledgeArticles().then(() => searchKnowledgeBase(query));
+        return;
+    }
+
+    const searchTerm = query.toLowerCase();
+
+    const matches = knowledgeArticles.filter(article => {
+        const title = (article.title || "").toLowerCase();
+        const category = (article.category || "").toLowerCase();
+        const content = (article.content || "").replace(/<[^>]*>/g, "").toLowerCase();
+
+        return (
+            title.includes(searchTerm) ||
+            category.includes(searchTerm) ||
+            content.includes(searchTerm)
+        );
+    });
+
+    results.classList.remove("hidden");
+
+    if (matches.length === 0) {
+        results.innerHTML = `
+            <div class="kb-no-results">
+                <strong>No articles found</strong>
+                Try searching for another topic, vulnerability, or technique.
+            </div>
+        `;
+        return;
+    }
+
+    results.innerHTML = matches.slice(0, 8).map((article, index) => `
+        <div
+            class="kb-result-card"
+            style="animation-delay:${index * 35}ms"
+            onclick="openSearchArticle('${escapeSearchHTML(article.slug)}')"
+        >
+            <div class="kb-result-info">
+                <div class="kb-result-title">${escapeSearchHTML(article.title)}</div>
+                <div class="kb-result-category">
+                    ${escapeSearchHTML(article.category || "Knowledge Base")}
+                </div>
+            </div>
+            <span class="kb-result-arrow">READ →</span>
+        </div>
+    `).join("");
+}
+
+function openSearchArticle(slug) {
+    document.getElementById("kb-search-results").classList.add("hidden");
+    document.getElementById("kb-search").value = "";
+    document.getElementById("kb-search-clear").classList.remove("active");
+    openArticle(slug);
+}
+
+function clearKnowledgeSearch() {
+    const input = document.getElementById("kb-search");
+    const results = document.getElementById("kb-search-results");
+
+    input.value = "";
+    results.innerHTML = "";
+    results.classList.add("hidden");
+    document.getElementById("kb-search-clear").classList.remove("active");
+    input.focus();
+}
+
+function escapeSearchHTML(value) {
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+document.addEventListener("click", function(event) {
+    const wrapper = document.querySelector(".kb-search-wrapper");
+
+    if (wrapper && !wrapper.contains(event.target)) {
+        document.getElementById("kb-search-results").classList.add("hidden");
+    }
+});
+
 
 async function loadKnowledgeArticles(){
 
