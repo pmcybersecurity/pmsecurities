@@ -1396,6 +1396,93 @@ ${err}
 /* ============== END KNOWLEDGE BASE ============== */
         window.addEventListener('DOMContentLoaded', fetchCoursesFromDatabase);
     </script>
+    // ================= ABOUT US MODAL CONTROLS =================
+
+let previouslyFocusedElement = null;
+
+function openAboutModal(modalId) {
+    const modal = document.getElementById(modalId);
+
+    if (!modal) return;
+
+    // Remember the element that opened the modal
+    previouslyFocusedElement = document.activeElement;
+
+    // Close other About Us modals if one is already open
+    document.querySelectorAll(
+        '#team-modal, #collaborations-modal'
+    ).forEach(existingModal => {
+        existingModal.classList.add('hidden');
+        existingModal.classList.remove('flex');
+    });
+
+    // Open the selected modal
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+
+    // Prevent background scrolling
+    document.body.style.overflow = 'hidden';
+
+    // Focus the close button for keyboard accessibility
+    const closeButton = modal.querySelector('button[aria-label]');
+
+    if (closeButton) {
+        closeButton.focus();
+    }
+}
+
+function closeAboutModal(modalId) {
+    const modal = document.getElementById(modalId);
+
+    if (!modal) return;
+
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+
+    // Restore background scrolling
+    const anotherModalOpen = Array.from(
+        document.querySelectorAll(
+            '#team-modal, #collaborations-modal'
+        )
+    ).some(openModal => !openModal.classList.contains('hidden'));
+
+    if (!anotherModalOpen) {
+        document.body.style.overflow = '';
+    }
+
+    // Return focus to the element that opened the modal
+    if (
+        previouslyFocusedElement &&
+        typeof previouslyFocusedElement.focus === 'function'
+    ) {
+        previouslyFocusedElement.focus();
+    }
+}
+
+function closeAboutModalOnBackdrop(event, modalId) {
+    // Close only when the user clicks the dark backdrop,
+    // not when clicking the modal's contents.
+    if (event.target.id === modalId) {
+        closeAboutModal(modalId);
+    }
+}
+
+// Close an About Us modal by pressing Escape
+document.addEventListener('keydown', function(event) {
+    if (event.key !== 'Escape') return;
+
+    const openModal = document.querySelector(
+        '#team-modal:not(.hidden), #collaborations-modal:not(.hidden)'
+    );
+
+    if (openModal) {
+        closeAboutModal(openModal.id);
+    }
+});
+
+// ================= END ABOUT US MODAL CONTROLS =================
+
+
     <script src="js/security.js"></script>
 </body>
 </html>
