@@ -469,49 +469,446 @@ Access Paid Courses
     </div>
 </section>
 <!-- =================== END KNOWLEDGE BASE =================== -->
+<section id="about" class="border-t border-slate-900 bg-slate-950/20 py-24">
+    <div class="max-w-7xl mx-auto px-6">
 
-        <section id="about" class="border-t border-slate-900 bg-slate-950/20 py-24">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="text-center mb-16">
-                    <span class="text-xs font-bold tracking-widest uppercase text-cyberRed">Command & Structure</span>
-                    <h2 class="font-display text-4xl font-bold text-white mt-3">Leadership & Partners</h2>
+```
+    <!-- SECTION HEADER -->
+    <div class="text-center mb-16">
+        <span class="text-xs font-bold tracking-widest uppercase text-cyberRed">
+            Command & Structure
+        </span>
+
+        <h2 class="font-display text-4xl font-bold text-white mt-3">
+            About Us
+        </h2>
+
+        <p class="text-slate-400 text-sm max-w-2xl mx-auto mt-4 leading-relaxed">
+            Meet our team and explore the organizations we collaborate with
+            to advance cybersecurity education, research, and innovation.
+        </p>
+    </div>
+
+    <!-- TEAM AND COLLABORATIONS CARDS -->
+    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+
+        <!-- OUR TEAM: PRANAV MANGLANI -->
+        <div class="group border border-slate-800 bg-cardBg/20 p-8 rounded-sm
+                    flex flex-col justify-between relative overflow-hidden
+                    transition-all duration-300 hover:border-cyberCyan/50">
+
+            <div class="absolute top-0 left-0 w-1 h-0 bg-cyberCyan
+                        group-hover:h-full transition-all duration-500"></div>
+
+            <div>
+                <div class="w-12 h-12 rounded-full mb-6 border border-slate-700 overflow-hidden">
+                    <img
+                        src="https://pmsecurity.online/profile.jpg"
+                        alt="Pranav Manglani"
+                        class="w-full h-full object-cover"
+                    >
                 </div>
-                <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                    <div class="border border-slate-800 bg-cardBg/20 p-8 rounded-sm flex flex-col justify-between hover:border-cyberCyan/50 transition-all duration-300 group">
-                        <div>
-<div class="w-12 h-12 rounded-full mb-6 border border-slate-700 overflow-hidden">
-    <img
-        src="https://pmsecurity.online/profile.jpg"
-        alt="My Profile Picture"
-        class="w-full h-full object-cover"
-    >
-</div>
-                            <div class="text-xs font-bold uppercase tracking-wider text-cyberCyan mb-1">Founder & CEO</div>
-                            <h3 class="font-display text-2xl font-bold text-white mb-3 group-hover:text-cyberCyan transition-colors">Pranav Manglani</h3>
-                            <p class="text-slate-400 text-sm leading-relaxed mb-6">Founder of PM. Securities. Pranav is a cybersecurity enthusiast, researcher. He is dedicated to building educational cybersecurity initiatives, conducting security research, and helping aspiring learners gain practical experience through hands-on training and community engagement, achieved 75+ in Burp OSCP Certification </p>
-                        </div>
-                        <button onclick="navigateToCustomProfile()" class="text-center w-full border border-cyberCyan/30 text-cyberCyan font-bold text-xs uppercase tracking-widest py-3 px-4 rounded-sm hover:bg-cyberCyan hover:text-darkBg transition-all">Click to View Profile</button>
-                    </div>
-                    <div class="border border-slate-800 bg-cardBg/20 p-8 rounded-sm flex flex-col justify-between">
-                        <div>
-                            <div class="w-12 h-12 rounded-full mb-6 border border-slate-700 overflow-hidden">
-    <img
-        src="https://pmsecurity.online/yuvi.jpeg"
-        alt="Yuvraj Gupta"
-        class="w-full h-full object-cover"
-        loading="lazy"
-    >
-</div>
-                            <div class="text-xs font-bold uppercase tracking-wider text-cyberRed mb-1">Yuvi Cybersecurity</div>
-                            <h3 class="font-display text-2xl font-bold text-white mb-3">Yuvraj Gupta</h3>
-                            <p class="text-slate-400 text-sm leading-relaxed mb-6">Renowned Cybersecurity specialist, technical educator, and platform architect.<br> CISCO certified ethical hacker and cybersecurity researcher focused on practical security, responsible testing, and clear learning paths.</p>
-                        </div>
-                        <a href="https://thelearnskill.in" target="_blank" class="text-center w-full border border-cyberRed/30 text-cyberRed font-bold text-xs uppercase tracking-widest py-3 px-4 rounded-sm hover:bg-cyberRed hover:text-white transition-all">Access Platform Website</a>
-                    </div>
+
+                <div class="text-xs font-bold uppercase tracking-wider
+                            text-cyberCyan mb-1">
+                    OUR TEAM
                 </div>
+
+                <h3 class="font-display text-2xl font-bold text-white mb-3
+                           group-hover:text-cyberCyan transition-colors">
+                    Meet Our Team
+                </h3>
+
+                <p class="text-slate-400 text-sm leading-relaxed mb-8">
+                    Meet the people behind PM. Securities and discover the
+                    team working on our cybersecurity initiatives, technical
+                    research, and educational projects.
+                </p>
             </div>
-        </section>
 
+            <button
+                type="button"
+                onclick="openAboutModal('team-modal')"
+                class="text-center w-full border border-cyberCyan/30
+                       text-cyberCyan font-bold text-xs uppercase
+                       tracking-widest py-3 px-4 rounded-sm
+                       hover:bg-cyberCyan hover:text-darkBg transition-all">
+                View Our Team →
+            </button>
+        </div>
+
+
+        <!-- OUR COLLABORATIONS: YUVRAJ GUPTA -->
+        <div class="group border border-slate-800 bg-cardBg/20 p-8 rounded-sm
+                    flex flex-col justify-between relative overflow-hidden
+                    transition-all duration-300 hover:border-cyberRed/50">
+
+            <div class="absolute top-0 left-0 w-1 h-0 bg-cyberRed
+                        group-hover:h-full transition-all duration-500"></div>
+
+            <div>
+                <div class="w-12 h-12 rounded-full mb-6 border border-slate-700 overflow-hidden">
+                    <img
+                        src="https://pmsecurity.online/yuvi.jpeg"
+                        alt="Yuvraj Gupta"
+                        class="w-full h-full object-cover"
+                        loading="lazy"
+                    >
+                </div>
+
+                <div class="text-xs font-bold uppercase tracking-wider
+                            text-cyberRed mb-1">
+                    OUR COLLABORATIONS
+                </div>
+
+                <h3 class="font-display text-2xl font-bold text-white mb-3
+                           group-hover:text-cyberRed transition-colors">
+                    Our Collaborations
+                </h3>
+
+                <p class="text-slate-400 text-sm leading-relaxed mb-8">
+                    Discover the organizations and platforms we work with
+                    to encourage cybersecurity education, technical
+                    knowledge sharing, and collaborative learning.
+                </p>
+            </div>
+
+            <button
+                type="button"
+                onclick="openAboutModal('collaborations-modal')"
+                class="text-center w-full border border-cyberRed/30
+                       text-cyberRed font-bold text-xs uppercase
+                       tracking-widest py-3 px-4 rounded-sm
+                       hover:bg-cyberRed hover:text-white transition-all">
+                View Collaborations →
+            </button>
+        </div>
+
+    </div>
+</div>
+```
+
+</section>
+<!-- ================= OUR TEAM MODAL ================= -->
+<div
+    id="team-modal"
+    class="fixed inset-0 bg-darkBg/95 backdrop-blur-md hidden
+           items-center justify-center z-[100] p-4"
+    onclick="closeAboutModalOnBackdrop(event, 'team-modal')"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="team-modal-title"
+>
+    <div class="bg-cardBg border border-slate-800 rounded-sm
+                max-w-4xl w-full max-h-[85vh] overflow-y-auto relative">
+
+        <!-- TOP ACCENT -->
+        <div class="sticky top-0 z-10 bg-cardBg border-b border-slate-800
+                    flex items-center justify-between p-6">
+            <div>
+                <span class="text-xs font-bold tracking-widest uppercase text-cyberCyan">
+                    PM. Securities
+                </span>
+
+                <h2 id="team-modal-title"
+                    class="font-display text-2xl sm:text-3xl font-bold text-white mt-2">
+                    Our Team
+                </h2>
+            </div>
+
+            <button
+                type="button"
+                onclick="closeAboutModal('team-modal')"
+                aria-label="Close team modal"
+                class="text-slate-400 hover:text-white text-3xl transition-colors">
+                &times;
+            </button>
+        </div>
+
+        <div class="p-6 sm:p-8">
+
+            <p class="text-slate-400 text-sm leading-relaxed mb-8">
+                Meet the people contributing to our cybersecurity initiatives,
+                research, and educational projects.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+                <!-- TEAM MEMBER 1 -->
+                <div class="border border-slate-800 bg-slate-950/40
+                            p-6 rounded-sm hover:border-cyberCyan/50 transition-all">
+
+                    <div class="w-14 h-14 rounded-full overflow-hidden
+                                border border-slate-700 mb-4">
+                        <img
+                            src="https://pmsecurity.online/profile.jpg"
+                            alt="Pranav Manglani"
+                            class="w-full h-full object-cover"
+                        >
+                    </div>
+
+                    <span class="text-[10px] font-bold uppercase
+                                 tracking-widest text-cyberCyan">
+                        Founder & CEO
+                    </span>
+
+                    <h3 class="font-display text-xl font-bold text-white mt-2 mb-3">
+                        Pranav Manglani
+                    </h3>
+
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Cybersecurity enthusiast and researcher focused on
+                        security research, educational initiatives, and
+                        practical learning experiences.
+                    </p>
+                </div>
+
+                <!-- TEAM MEMBER 2: REPLACE WITH VERIFIED DETAILS -->
+                <div class="border border-slate-800 bg-slate-950/40
+                            p-6 rounded-sm hover:border-cyberCyan/50 transition-all">
+
+                    <div class="w-14 h-14 rounded-full overflow-hidden
+                                border border-slate-700 mb-4">
+                        <img
+                            src="https://pmsecurity.online/yuvi.jpeg"
+                            alt="Yuvraj Gupta"
+                            class="w-full h-full object-cover"
+                            loading="lazy"
+                        >
+                    </div>
+
+                    <span class="text-[10px] font-bold uppercase
+                                 tracking-widest text-cyberRed">
+                        Cybersecurity Specialist
+                    </span>
+
+                    <h3 class="font-display text-xl font-bold text-white mt-2 mb-3">
+                        Yuvraj Gupta
+                    </h3>
+
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Cybersecurity specialist and technical educator
+                        focused on practical security, responsible testing,
+                        and clear learning paths.
+                    </p>
+                </div>
+
+                <!--
+                    ADD MORE TEAM MEMBERS:
+                    Duplicate one of the cards above and update
+                    the image, role, name, and description.
+                -->
+
+            </div>
+        </div>
+
+        <div class="border-t border-slate-800 p-5 text-right">
+            <button
+                type="button"
+                onclick="closeAboutModal('team-modal')"
+                class="border border-slate-700 text-slate-300 px-5 py-2
+                       text-xs font-bold uppercase tracking-widest
+                       hover:border-cyberCyan hover:text-cyberCyan transition-all">
+                Close
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<!-- ================= OUR COLLABORATIONS MODAL ================= -->
+<div
+    id="collaborations-modal"
+    class="fixed inset-0 bg-darkBg/95 backdrop-blur-md hidden
+           items-center justify-center z-[100] p-4"
+    onclick="closeAboutModalOnBackdrop(event, 'collaborations-modal')"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="collaborations-modal-title"
+>
+    <div class="bg-cardBg border border-slate-800 rounded-sm
+                max-w-5xl w-full max-h-[85vh] overflow-y-auto relative">
+
+        <!-- TOP ACCENT -->
+        <div class="sticky top-0 z-10 bg-cardBg border-b border-slate-800
+                    flex items-center justify-between p-6">
+            <div>
+                <span class="text-xs font-bold tracking-widest uppercase text-cyberRed">
+                    Partnership Network
+                </span>
+
+                <h2 id="collaborations-modal-title"
+                    class="font-display text-2xl sm:text-3xl font-bold text-white mt-2">
+                    Our Collaborations
+                </h2>
+            </div>
+
+            <button
+                type="button"
+                onclick="closeAboutModal('collaborations-modal')"
+                aria-label="Close collaborations modal"
+                class="text-slate-400 hover:text-white text-3xl transition-colors">
+                &times;
+            </button>
+        </div>
+
+        <div class="p-6 sm:p-8">
+
+            <p class="text-slate-400 text-sm leading-relaxed mb-8">
+                Explore the companies and platforms connected with our
+                cybersecurity learning and research ecosystem.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <!-- COLLABORATION 1 -->
+                <div class="border border-slate-800 bg-slate-950/40 p-6
+                            rounded-sm flex flex-col justify-between
+                            hover:border-cyberCyan/50 transition-all">
+
+                    <div>
+                        <div class="text-3xl text-cyberCyan mb-5">01</div>
+
+                        <span class="text-[10px] font-bold uppercase
+                                     tracking-widest text-cyberCyan">
+                            Collaboration
+                        </span>
+
+                        <h3 class="font-display text-xl font-bold text-white mt-3 mb-4">
+                            Company Name 1
+                        </h3>
+
+                        <div class="text-xs text-slate-500 uppercase tracking-wider mb-2">
+                            Company Founder
+                        </div>
+
+                        <p class="text-sm text-slate-300 mb-4">
+                            Founder Name 1
+                        </p>
+
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Add a short description of this company's work
+                            and its collaboration with PM. Securities.
+                        </p>
+                    </div>
+
+                    <a
+                        href="https://example.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="block text-center border border-cyberCyan/30
+                               text-cyberCyan font-bold text-xs uppercase
+                               tracking-widest py-3 px-4 rounded-sm
+                               hover:bg-cyberCyan hover:text-darkBg transition-all">
+                        Visit Website ↗
+                    </a>
+                </div>
+
+
+                <!-- COLLABORATION 2 -->
+                <div class="border border-slate-800 bg-slate-950/40 p-6
+                            rounded-sm flex flex-col justify-between
+                            hover:border-cyberRed/50 transition-all">
+
+                    <div>
+                        <div class="text-3xl text-cyberRed mb-5">02</div>
+
+                        <span class="text-[10px] font-bold uppercase
+                                     tracking-widest text-cyberRed">
+                            Collaboration
+                        </span>
+
+                        <h3 class="font-display text-xl font-bold text-white mt-3 mb-4">
+                            Company Name 2
+                        </h3>
+
+                        <div class="text-xs text-slate-500 uppercase tracking-wider mb-2">
+                            Company Founder
+                        </div>
+
+                        <p class="text-sm text-slate-300 mb-4">
+                            Founder Name 2
+                        </p>
+
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Add a short description of this company's work
+                            and its collaboration with PM. Securities.
+                        </p>
+                    </div>
+
+                    <a
+                        href="https://example.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="block text-center border border-cyberRed/30
+                               text-cyberRed font-bold text-xs uppercase
+                               tracking-widest py-3 px-4 rounded-sm
+                               hover:bg-cyberRed hover:text-white transition-all">
+                        Visit Website ↗
+                    </a>
+                </div>
+
+
+                <!-- COLLABORATION 3 -->
+                <div class="border border-slate-800 bg-slate-950/40 p-6
+                            rounded-sm flex flex-col justify-between
+                            hover:border-cyberCyan/50 transition-all">
+
+                    <div>
+                        <div class="text-3xl text-cyberCyan mb-5">03</div>
+
+                        <span class="text-[10px] font-bold uppercase
+                                     tracking-widest text-cyberCyan">
+                            Collaboration
+                        </span>
+
+                        <h3 class="font-display text-xl font-bold text-white mt-3 mb-4">
+                            Company Name 3
+                        </h3>
+
+                        <div class="text-xs text-slate-500 uppercase tracking-wider mb-2">
+                            Company Founder
+                        </div>
+
+                        <p class="text-sm text-slate-300 mb-4">
+                            Founder Name 3
+                        </p>
+
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Add a short description of this company's work
+                            and its collaboration with PM. Securities.
+                        </p>
+                    </div>
+
+                    <a
+                        href="https://example.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="block text-center border border-cyberCyan/30
+                               text-cyberCyan font-bold text-xs uppercase
+                               tracking-widest py-3 px-4 rounded-sm
+                               hover:bg-cyberCyan hover:text-darkBg transition-all">
+                        Visit Website ↗
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="border-t border-slate-800 p-5 text-right">
+            <button
+                type="button"
+                onclick="closeAboutModal('collaborations-modal')"
+                class="border border-slate-700 text-slate-300 px-5 py-2
+                       text-xs font-bold uppercase tracking-widest
+                       hover:border-cyberRed hover:text-cyberRed transition-all">
+                Close
+            </button>
+        </div>
+    </div>
+</div>
+<!-- ================= END ABOUT MODALS ================= -->
+    
         <section id="contact" class="border-t border-slate-900 bg-slate-950/50 py-24">
             <div class="max-w-4xl mx-auto px-6 text-center">
                 <span class="text-xs font-bold tracking-widest uppercase text-cyberCyan">Secure Channels</span>
