@@ -469,7 +469,7 @@ Access Paid Courses
     </div>
 </section>
 <!-- =================== END KNOWLEDGE BASE =================== -->
-
+        
 <section id="about" class="border-t border-slate-900 bg-slate-950/20 py-24">
     <div class="max-w-7xl mx-auto px-6">
 
@@ -704,6 +704,8 @@ Access Paid Courses
 
     </div>
 </div>
+
+
 
 
         <section id="contact" class="border-t border-slate-900 bg-slate-950/50 py-24">
@@ -1593,463 +1595,125 @@ ${err}
         window.addEventListener('DOMContentLoaded', fetchCoursesFromDatabase);
         
 <script>
-/*
-|--------------------------------------------------------------------------
-| PM. SECURITIES DIRECTORY DATA
-|--------------------------------------------------------------------------
-| Add your real team members and collaborations to these arrays.
-| Replace the sample entries with verified information before publishing.
-*/
-
-// TEAM MEMBERS
 const teamMembers = [
     {
         name: "Pranav Manglani",
         role: "Founder & CEO",
         image: "https://pmsecurity.online/profile.jpg",
-        description:
-            "Founder of PM. Securities, focused on cybersecurity education, research, and practical learning initiatives.",
+        description: "Leading PM Security's mission to make cybersecurity knowledge accessible and practical.",
         tags: ["Leadership", "Security Research"],
         link: ""
-    },
+    }
+];
 
-    // ADD MORE TEAM MEMBERS HERE:
+const collaborations = [
+    // Add collaboration entries here using the same structure:
     // {
-    //     name: "Member Name",
-    //     role: "Security Researcher",
-    //     image: "https://pmsecurity.online/member.jpg",
-    //     description: "A description of their role and contributions.",
-    //     tags: ["Web Security", "Research"],
-    //     link: "https://example.com/profile"
+    //     name: "Organization Name",
+    //     role: "Collaboration Partner",
+    //     image: "https://example.com/logo.png",
+    //     description: "Description of the collaboration.",
+    //     tags: ["Research", "Security"],
+    //     link: "https://example.com"
     // }
 ];
 
+function openDirectoryModal(type) {
+    const modal = document.getElementById("directoryModal");
+    const title = document.getElementById("directoryModalTitle");
+    const content = document.getElementById("directoryModalContent");
 
-// COLLABORATIONS
-const collaborations = [
-    /*
-    Add every verified collaboration here.
-
-    Example structure:
-
-    {
-        name: "Partner / Organization Name",
-        type: "Educational Partnership",
-        date: "Month Year",
-        image: "",
-        description: "Explain what the collaboration involved.",
-        contributions: [
-            "Joint educational initiative",
-            "Security awareness activities"
-        ],
-        link: "https://example.com"
+    if (!modal || !title || !content) {
+        console.error("Directory modal elements were not found.");
+        return;
     }
 
-    Only include activities that actually took place.
-    */
+    const entries = type === "team" ? teamMembers : collaborations;
 
-    // ADD YOUR REAL COLLABORATIONS HERE
-];
+    title.textContent = type === "team" ? "Our Team" : "Our Collaborations";
 
-
-/*
-|--------------------------------------------------------------------------
-| DIRECTORY RENDERING
-|--------------------------------------------------------------------------
-*/
-
-const directoryModal = document.getElementById("directoryModal");
-const directoryDialog = document.getElementById("directoryDialog");
-const directoryContent = document.getElementById("directoryContent");
-const directorySearch = document.getElementById("directorySearch");
-const directoryTitle = document.getElementById("directoryTitle");
-const directoryEyebrow = document.getElementById("directoryEyebrow");
-const directoryDescription = document.getElementById("directoryDescription");
-const directoryCount = document.getElementById("directoryCount");
-
-let currentDirectory = "team";
-let previousFocusedElement = null;
-
-
-// Escape HTML so directory text is not interpreted as markup.
-function escapeDirectoryHTML(value) {
-    return String(value ?? "").replace(/[&<>"']/g, character => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;"
-    })[character]);
-}
-
-
-// Allow only safe external HTTP(S) links.
-function safeDirectoryURL(value) {
-    try {
-        const url = new URL(value, window.location.origin);
-
-        if (!["https:", "http:"].includes(url.protocol)) {
-            return "";
-        }
-
-        return url.href;
-    } catch {
-        return "";
-    }
-}
-
-
-function directoryLink(url, label, colorClass) {
-    const safeURL = safeDirectoryURL(url);
-
-    if (!safeURL) return "";
-
-    return `
-        <a href="${escapeDirectoryHTML(safeURL)}"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="inline-flex items-center gap-2 mt-5 text-xs
-                  font-bold uppercase tracking-widest ${colorClass}
-                  hover:underline">
-            ${escapeDirectoryHTML(label)} ↗
-        </a>
-    `;
-}
-
-
-function renderTeamMember(member) {
-    const name = escapeDirectoryHTML(member.name);
-    const role = escapeDirectoryHTML(member.role);
-    const description = escapeDirectoryHTML(member.description);
-
-    const tags = Array.isArray(member.tags)
-        ? member.tags.map(tag => `
-            <span class="text-[10px] uppercase tracking-wider
-                         border border-slate-800 text-slate-400
-                         px-2 py-1 rounded-sm">
-                ${escapeDirectoryHTML(tag)}
-            </span>
-        `).join("")
-        : "";
-
-    const imageURL = safeDirectoryURL(member.image || "");
-
-    const image = imageURL
-        ? `
-            <img src="${escapeDirectoryHTML(imageURL)}"
-                 alt="${name}"
-                 loading="lazy"
-                 class="w-full h-full object-cover"
-                 referrerpolicy="no-referrer"
-                 onerror="this.parentElement.classList.add('hidden')">
-          `
-        : `
-            <span class="text-xl font-bold text-cyberCyan"
-                  aria-hidden="true">
-                ${escapeDirectoryHTML(
-                    String(member.name || "?").trim().charAt(0).toUpperCase()
-                )}
-            </span>
-          `;
-
-    return `
-        <article class="border border-slate-800 bg-cardBg/20 p-6
-                        rounded-sm hover:border-cyberCyan/50
-                        transition-colors">
-
-            <div class="flex items-start gap-4">
-                <div class="w-16 h-16 shrink-0 overflow-hidden
-                            border border-slate-700 bg-slate-900
-                            flex items-center justify-center rounded-sm">
-                    ${image}
-                </div>
-
-                <div class="min-w-0 flex-1">
-                    <p class="text-[10px] uppercase tracking-widest
-                              text-cyberCyan font-bold mb-2">
-                        ${role}
-                    </p>
-
-                    <h3 class="text-lg font-bold text-white break-words">
-                        ${name}
-                    </h3>
-                </div>
-            </div>
-
-            <p class="text-sm text-slate-400 leading-relaxed mt-5">
-                ${description}
-            </p>
-
-            <div class="flex flex-wrap gap-2 mt-4">
-                ${tags}
-            </div>
-
-            ${directoryLink(
-                member.link,
-                "View Profile",
-                "text-cyberCyan"
-            )}
-        </article>
-    `;
-}
-
-
-function renderCollaboration(item) {
-    const name = escapeDirectoryHTML(item.name);
-    const type = escapeDirectoryHTML(item.type || "Collaboration");
-    const date = escapeDirectoryHTML(item.date || "");
-    const description = escapeDirectoryHTML(item.description);
-
-    const contributions = Array.isArray(item.contributions)
-        ? item.contributions.map(contribution => `
-            <li class="flex items-start gap-2 text-sm text-slate-400">
-                <span class="text-cyberRed" aria-hidden="true">▹</span>
-                <span>${escapeDirectoryHTML(contribution)}</span>
-            </li>
-        `).join("")
-        : "";
-
-    const imageURL = safeDirectoryURL(item.image || "");
-
-    const image = imageURL
-        ? `
-            <img src="${escapeDirectoryHTML(imageURL)}"
-                 alt="${name}"
-                 loading="lazy"
-                 class="w-full h-full object-cover"
-                 referrerpolicy="no-referrer"
-                 onerror="this.parentElement.classList.add('hidden')">
-          `
-        : `
-            <span class="text-2xl font-bold text-cyberRed"
-                  aria-hidden="true">
-                ${escapeDirectoryHTML(
-                    String(item.name || "?").trim().charAt(0).toUpperCase()
-                )}
-            </span>
-          `;
-
-    return `
-        <article class="border border-slate-800 bg-cardBg/20 p-6
-                        rounded-sm hover:border-cyberRed/50
-                        transition-colors">
-
-            <div class="flex items-start gap-4">
-                <div class="w-16 h-16 shrink-0 overflow-hidden
-                            border border-slate-700 bg-slate-900
-                            flex items-center justify-center rounded-sm">
-                    ${image}
-                </div>
-
-                <div class="min-w-0 flex-1">
-                    <p class="text-[10px] uppercase tracking-widest
-                              text-cyberRed font-bold mb-2">
-                        ${type}
-                    </p>
-
-                    <h3 class="text-lg font-bold text-white break-words">
-                        ${name}
-                    </h3>
-
-                    ${date ? `
-                        <p class="text-xs text-slate-500 mt-2">
-                            ${date}
-                        </p>
-                    ` : ""}
-                </div>
-            </div>
-
-            <p class="text-sm text-slate-400 leading-relaxed mt-5">
-                ${description}
-            </p>
-
-            ${contributions ? `
-                <div class="mt-5">
-                    <h4 class="text-[10px] uppercase tracking-widest
-                               text-slate-300 font-bold mb-3">
-                        Key Activities
-                    </h4>
-
-                    <ul class="space-y-2">
-                        ${contributions}
-                    </ul>
-                </div>
-            ` : ""}
-
-            ${directoryLink(
-                item.link,
-                "Explore Collaboration",
-                "text-cyberRed"
-            )}
-        </article>
-    `;
-}
-
-
-function renderDirectory() {
-    const isTeam = currentDirectory === "team";
-    const entries = isTeam ? teamMembers : collaborations;
-
-    const query = directorySearch.value.trim().toLowerCase();
-
-    const filteredEntries = entries.filter(item => {
-        const searchableText = [
-            item.name,
-            item.role,
-            item.type,
-            item.date,
-            item.description,
-            ...(Array.isArray(item.tags) ? item.tags : []),
-            ...(Array.isArray(item.contributions) ? item.contributions : [])
-        ].join(" ").toLowerCase();
-
-        return searchableText.includes(query);
-    });
-
-    directoryCount.textContent =
-        `${filteredEntries.length} ${
-            filteredEntries.length === 1 ? "entry" : "entries"
-        }`;
-
-    if (filteredEntries.length === 0) {
-        directoryContent.innerHTML = `
-            <div class="text-center py-16">
-                <div class="text-3xl text-slate-600 mb-4"
-                     aria-hidden="true">⌕</div>
-
-                <h3 class="text-white font-bold text-lg">
-                    ${query ? "No Results Found" : "No Entries Yet"}
-                </h3>
-
-                <p class="text-slate-500 text-sm mt-2">
-                    ${query
-                        ? "Try another search term."
-                        : isTeam
-                            ? "Team member profiles will appear here."
-                            : "Collaboration details will appear here once added."
-                    }
+    if (!entries.length) {
+        content.innerHTML = `
+            <div class="text-center py-10">
+                <p class="text-slate-400">
+                    ${type === "team"
+                        ? "Team details will be available soon."
+                        : "Collaboration details will be announced soon."}
                 </p>
             </div>
         `;
+    } else {
+        content.innerHTML = entries.map(person => `
+            <article class="border border-slate-800 bg-cardBg/20 p-6 rounded-sm">
+                <div class="flex flex-col sm:flex-row gap-5 items-start">
+                    ${person.image ? `
+                        <img
+                            src="${person.image}"
+                            alt="${person.name}"
+                            class="w-20 h-20 object-cover border border-slate-800 rounded-sm"
+                            loading="lazy"
+                        >
+                    ` : ""}
 
-        return;
+                    <div class="flex-1 min-w-0">
+                        <h3 class="text-xl font-display text-white">
+                            ${person.name}
+                        </h3>
+
+                        <p class="text-cyberCyan text-sm mt-1">
+                            ${person.role}
+                        </p>
+
+                        <p class="text-slate-400 text-sm mt-3">
+                            ${person.description}
+                        </p>
+
+                        ${person.tags?.length ? `
+                            <div class="flex flex-wrap gap-2 mt-4">
+                                ${person.tags.map(tag => `
+                                    <span class="text-xs border border-slate-800 px-2 py-1 text-slate-300">
+                                        ${tag}
+                                    </span>
+                                `).join("")}
+                            </div>
+                        ` : ""}
+
+                        ${person.link ? `
+                            <a
+                                href="${person.link}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="inline-block mt-4 text-cyberCyan text-sm hover:underline"
+                            >
+                                View Profile →
+                            </a>
+                        ` : ""}
+                    </div>
+                </div>
+            </article>
+        `).join("");
     }
 
-    directoryContent.innerHTML = `
-        <div class="grid sm:grid-cols-2 gap-5">
-            ${filteredEntries.map(item =>
-                isTeam
-                    ? renderTeamMember(item)
-                    : renderCollaboration(item)
-            ).join("")}
-        </div>
-    `;
-}
-
-
-/*
-|--------------------------------------------------------------------------
-| OPEN AND CLOSE MODALS
-|--------------------------------------------------------------------------
-*/
-
-function openDirectoryModal(type) {
-    currentDirectory =
-        type === "collaborations" ? "collaborations" : "team";
-
-    previousFocusedElement = document.activeElement;
-
-    const isTeam = currentDirectory === "team";
-
-    directoryTitle.textContent = isTeam
-        ? "Our Team"
-        : "Our Collaborations";
-
-    directoryEyebrow.textContent = isTeam
-        ? "People & Leadership"
-        : "Partnerships & Projects";
-
-    directoryDescription.textContent = isTeam
-        ? "Meet the people and professionals behind PM. Securities."
-        : "Explore our partnerships, joint initiatives, and collaborative work.";
-
-    directorySearch.value = "";
-
-    directoryModal.classList.remove("hidden");
-    directoryModal.classList.add("flex");
-    directoryModal.setAttribute("aria-hidden", "false");
-
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
     document.body.style.overflow = "hidden";
-
-    renderDirectory();
-
-    directoryDialog.focus();
 }
-
 
 function closeDirectoryModal() {
-    directoryModal.classList.add("hidden");
-    directoryModal.classList.remove("flex");
-    directoryModal.setAttribute("aria-hidden", "true");
+    const modal = document.getElementById("directoryModal");
+    if (!modal) return;
 
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
     document.body.style.overflow = "";
-
-    if (previousFocusedElement &&
-        typeof previousFocusedElement.focus === "function") {
-        previousFocusedElement.focus();
-    }
 }
 
-
-function handleDirectoryBackdrop(event) {
-    if (event.target === directoryModal) {
-        closeDirectoryModal();
-    }
-}
-
-
-// Live search.
-directorySearch.addEventListener("input", renderDirectory);
-
-
-// Close with Escape; keep keyboard focus inside the open dialog.
-document.addEventListener("keydown", function(event) {
-    if (directoryModal.classList.contains("hidden")) return;
-
+document.addEventListener("keydown", event => {
     if (event.key === "Escape") {
         closeDirectoryModal();
-        return;
-    }
-
-    if (event.key === "Tab") {
-        const focusableElements = [
-            ...directoryDialog.querySelectorAll(
-                'button:not([disabled]), input:not([disabled]), ' +
-                'a[href], [tabindex]:not([tabindex="-1"])'
-            )
-        ].filter(element => element.getClientRects().length > 0);
-
-        if (focusableElements.length === 0) {
-            event.preventDefault();
-            directoryDialog.focus();
-            return;
-        }
-
-        const first = focusableElements[0];
-        const last = focusableElements[focusableElements.length - 1];
-
-        if (event.shiftKey &&
-            (document.activeElement === first ||
-             document.activeElement === directoryDialog)) {
-            event.preventDefault();
-            last.focus();
-        } else if (!event.shiftKey &&
-                   document.activeElement === last) {
-            event.preventDefault();
-            first.focus();
-        }
     }
 });
+</script>
 </script>
 
     </script>
