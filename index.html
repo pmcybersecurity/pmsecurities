@@ -469,244 +469,48 @@ Access Paid Courses
     </div>
 </section>
 <!-- =================== END KNOWLEDGE BASE =================== -->
-        
-<section id="about" class="border-t border-slate-900 bg-slate-950/20 py-24">
-    <div class="max-w-7xl mx-auto px-6">
 
-        <!-- Section Heading -->
-        <div class="text-center mb-16">
-            <span class="text-xs font-bold tracking-widest uppercase text-cyberRed">
-                Command & Structure
-            </span>
-            <h2 class="font-display text-4xl font-bold text-white mt-3">
-                Leadership & Partners
-            </h2>
-            <p class="text-slate-400 text-sm mt-4 max-w-xl mx-auto">
-                Meet the people behind PM. Securities and explore
-                the collaborations that help us grow.
-            </p>
-        </div>
-
-        <!-- Category Cards -->
-        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-
-            <!-- OUR TEAM CARD -->
-            <div class="border border-slate-800 bg-cardBg/20 p-8 rounded-sm
-                        flex flex-col justify-between
-                        hover:border-cyberCyan/50 transition-all duration-300 group">
-
-                <div>
-                    <div class="w-14 h-14 mb-6 flex items-center justify-center
-                                border border-cyberCyan/30 bg-cyberCyan/5 rounded-sm
-                                text-cyberCyan">
-
-                        <!-- Team Icon -->
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                             width="28" height="28" viewBox="0 0 24 24"
-                             fill="none" stroke="currentColor"
-                             stroke-width="1.5" stroke-linecap="round"
-                             stroke-linejoin="round" aria-hidden="true">
-                            <path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                            <circle cx="10" cy="7" r="4"/>
-                            <path d="M20 21v-2a4 4 0 0 0-3-3.87"/>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                        </svg>
-                    </div>
-
-                    <div class="text-xs font-bold uppercase tracking-wider
-                                text-cyberCyan mb-2">
-                        The People Behind PM
-                    </div>
-
-                    <h3 class="font-display text-2xl font-bold text-white mb-3
-                               group-hover:text-cyberCyan transition-colors">
-                        Our Team
-                    </h3>
-
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                        Meet the individuals working behind PM. Securities.
-                        Explore our team members, their roles, expertise,
-                        and contributions to our cybersecurity initiatives.
-                    </p>
+        <section id="about" class="border-t border-slate-900 bg-slate-950/20 py-24">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <span class="text-xs font-bold tracking-widest uppercase text-cyberRed">Command & Structure</span>
+                    <h2 class="font-display text-4xl font-bold text-white mt-3">Leadership & Partners</h2>
                 </div>
-
-                <button
-                    type="button"
-                    onclick="openDirectoryModal('team')"
-                    class="text-center w-full border border-cyberCyan/30
-                           text-cyberCyan font-bold text-xs uppercase
-                           tracking-widest py-3 px-4 rounded-sm
-                           hover:bg-cyberCyan hover:text-darkBg
-                           transition-all">
-
-                    View Our Team →
-                </button>
-            </div>
-
-            <!-- OUR COLLABORATIONS CARD -->
-            <div class="border border-slate-800 bg-cardBg/20 p-8 rounded-sm
-                        flex flex-col justify-between
-                        hover:border-cyberRed/50 transition-all duration-300 group">
-
-                <div>
-                    <div class="w-14 h-14 mb-6 flex items-center justify-center
-                                border border-cyberRed/30 bg-cyberRed/5 rounded-sm
-                                text-cyberRed">
-
-                        <!-- Collaboration Icon -->
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                             width="28" height="28" viewBox="0 0 24 24"
-                             fill="none" stroke="currentColor"
-                             stroke-width="1.5" stroke-linecap="round"
-                             stroke-linejoin="round" aria-hidden="true">
-                            <path d="M12 20h9"/>
-                            <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L8 18l-4 1 1-4Z"/>
-                            <path d="M15 5l4 4"/>
-                            <path d="M3 7h6"/>
-                            <path d="M3 11h4"/>
-                        </svg>
-                    </div>
-
-                    <div class="text-xs font-bold uppercase tracking-wider
-                                text-cyberRed mb-2">
-                        Partnerships & Projects
-                    </div>
-
-                    <h3 class="font-display text-2xl font-bold text-white mb-3
-                               group-hover:text-cyberRed transition-colors">
-                        Our Collaborations
-                    </h3>
-
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                        Discover our collaborations, partner organizations,
-                        joint projects, educational initiatives, and the
-                        work we have undertaken with others in cybersecurity.
-                    </p>
-                </div>
-
-                <button
-                    type="button"
-                    onclick="openDirectoryModal('collaborations')"
-                    class="text-center w-full border border-cyberRed/30
-                           text-cyberRed font-bold text-xs uppercase
-                           tracking-widest py-3 px-4 rounded-sm
-                           hover:bg-cyberRed hover:text-white
-                           transition-all">
-
-                    Explore Collaborations →
-                </button>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-
-<!-- DIRECTORY MODAL -->
-<div id="directoryModal"
-     class="fixed inset-0 z-[9999] hidden items-center justify-center
-            bg-black/80 backdrop-blur-sm p-4 sm:p-6"
-     onclick="handleDirectoryBackdrop(event)"
-     aria-hidden="true">
-
-    <div id="directoryDialog"
-         role="dialog"
-         aria-modal="true"
-         aria-labelledby="directoryTitle"
-         aria-describedby="directoryDescription"
-         tabindex="-1"
-         class="relative w-full max-w-5xl max-h-[85vh] overflow-hidden
-                border border-slate-800 bg-slate-950 shadow-2xl rounded-sm
-                flex flex-col">
-
-        <!-- Modal Header -->
-        <div class="flex items-start justify-between gap-4 p-6 sm:p-8
-                    border-b border-slate-800">
-
-            <div>
-                <span id="directoryEyebrow"
-                      class="text-xs font-bold uppercase tracking-widest text-cyberCyan">
-                    PM. Securities
-                </span>
-
-                <h2 id="directoryTitle"
-                    class="font-display text-2xl sm:text-3xl font-bold
-                           text-white mt-2">
-                    Our Team
-                </h2>
-
-                <p id="directoryDescription"
-                   class="text-slate-400 text-sm mt-2">
-                    Meet the people behind PM. Securities.
-                </p>
-            </div>
-
-            <button type="button"
-                    onclick="closeDirectoryModal()"
-                    aria-label="Close modal"
-                    class="shrink-0 w-10 h-10 border border-slate-800
-                           text-slate-400 hover:text-white
-                           hover:border-cyberCyan transition-colors
-                           flex items-center justify-center rounded-sm">
-
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     width="20" height="20" viewBox="0 0 24 24"
-                     fill="none" stroke="currentColor"
-                     stroke-width="2" stroke-linecap="round"
-                     aria-hidden="true">
-                    <path d="m18 6-12 12M6 6l12 12"/>
-                </svg>
-            </button>
-        </div>
-
-        <!-- Search -->
-        <div class="px-6 sm:px-8 pt-5">
-            <label for="directorySearch" class="sr-only">
-                Search directory
-            </label>
-
-            <input
-                id="directorySearch"
-                type="search"
-                placeholder="Search members, partners or projects..."
-                autocomplete="off"
-                class="w-full bg-slate-900/70 border border-slate-800
-                       focus:border-cyberCyan outline-none text-white
-                       placeholder:text-slate-600 px-4 py-3 rounded-sm
-                       text-sm transition-colors"
-            >
-        </div>
-
-        <!-- Dynamic Directory Content -->
-        <div id="directoryContent"
-             class="overflow-y-auto p-6 sm:p-8 min-h-[180px]">
-
-            <!-- JavaScript inserts team members or collaborations here. -->
-
-        </div>
-
-        <!-- Modal Footer -->
-        <div class="border-t border-slate-800 px-6 sm:px-8 py-4
-                    flex items-center justify-between gap-4">
-
-            <span id="directoryCount"
-                  class="text-xs text-slate-500">
-                0 entries
-            </span>
-
-            <button type="button"
-                    onclick="closeDirectoryModal()"
-                    class="text-xs font-bold uppercase tracking-widest
-                           text-slate-400 hover:text-white transition-colors">
-                Close Window ✕
-            </button>
-        </div>
-
-    </div>
+                <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <div class="border border-slate-800 bg-cardBg/20 p-8 rounded-sm flex flex-col justify-between hover:border-cyberCyan/50 transition-all duration-300 group">
+                        <div>
+<div class="w-12 h-12 rounded-full mb-6 border border-slate-700 overflow-hidden">
+    <img
+        src="https://pmsecurity.online/profile.jpg"
+        alt="My Profile Picture"
+        class="w-full h-full object-cover"
+    >
 </div>
-
-
-
+                            <div class="text-xs font-bold uppercase tracking-wider text-cyberCyan mb-1">Founder & CEO</div>
+                            <h3 class="font-display text-2xl font-bold text-white mb-3 group-hover:text-cyberCyan transition-colors">Pranav Manglani</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">Founder of PM. Securities. Pranav is a cybersecurity enthusiast, researcher. He is dedicated to building educational cybersecurity initiatives, conducting security research, and helping aspiring learners gain practical experience through hands-on training and community engagement, achieved 75+ in Burp OSCP Certification </p>
+                        </div>
+                        <button onclick="navigateToCustomProfile()" class="text-center w-full border border-cyberCyan/30 text-cyberCyan font-bold text-xs uppercase tracking-widest py-3 px-4 rounded-sm hover:bg-cyberCyan hover:text-darkBg transition-all">Click to View Profile</button>
+                    </div>
+                    <div class="border border-slate-800 bg-cardBg/20 p-8 rounded-sm flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-full mb-6 border border-slate-700 overflow-hidden">
+    <img
+        src="https://pmsecurity.online/yuvi.jpeg"
+        alt="Yuvraj Gupta"
+        class="w-full h-full object-cover"
+        loading="lazy"
+    >
+</div>
+                            <div class="text-xs font-bold uppercase tracking-wider text-cyberRed mb-1">Yuvi Cybersecurity</div>
+                            <h3 class="font-display text-2xl font-bold text-white mb-3">Yuvraj Gupta</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">Renowned Cybersecurity specialist, technical educator, and platform architect.<br> CISCO certified ethical hacker and cybersecurity researcher focused on practical security, responsible testing, and clear learning paths.</p>
+                        </div>
+                        <a href="https://thelearnskill.in" target="_blank" class="text-center w-full border border-cyberRed/30 text-cyberRed font-bold text-xs uppercase tracking-widest py-3 px-4 rounded-sm hover:bg-cyberRed hover:text-white transition-all">Access Platform Website</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <section id="contact" class="border-t border-slate-900 bg-slate-950/50 py-24">
             <div class="max-w-4xl mx-auto px-6 text-center">
@@ -1589,133 +1393,8 @@ ${err}
 
 }
 
-        
-
 /* ============== END KNOWLEDGE BASE ============== */
         window.addEventListener('DOMContentLoaded', fetchCoursesFromDatabase);
-        
-<script>
-const teamMembers = [
-    {
-        name: "Pranav Manglani",
-        role: "Founder & CEO",
-        image: "https://pmsecurity.online/profile.jpg",
-        description: "Leading PM Security's mission to make cybersecurity knowledge accessible and practical.",
-        tags: ["Leadership", "Security Research"],
-        link: ""
-    }
-];
-
-const collaborations = [
-    // Add collaboration entries here using the same structure:
-    // {
-    //     name: "Organization Name",
-    //     role: "Collaboration Partner",
-    //     image: "https://example.com/logo.png",
-    //     description: "Description of the collaboration.",
-    //     tags: ["Research", "Security"],
-    //     link: "https://example.com"
-    // }
-];
-
-function openDirectoryModal(type) {
-    const modal = document.getElementById("directoryModal");
-    const title = document.getElementById("directoryModalTitle");
-    const content = document.getElementById("directoryModalContent");
-
-    if (!modal || !title || !content) {
-        console.error("Directory modal elements were not found.");
-        return;
-    }
-
-    const entries = type === "team" ? teamMembers : collaborations;
-
-    title.textContent = type === "team" ? "Our Team" : "Our Collaborations";
-
-    if (!entries.length) {
-        content.innerHTML = `
-            <div class="text-center py-10">
-                <p class="text-slate-400">
-                    ${type === "team"
-                        ? "Team details will be available soon."
-                        : "Collaboration details will be announced soon."}
-                </p>
-            </div>
-        `;
-    } else {
-        content.innerHTML = entries.map(person => `
-            <article class="border border-slate-800 bg-cardBg/20 p-6 rounded-sm">
-                <div class="flex flex-col sm:flex-row gap-5 items-start">
-                    ${person.image ? `
-                        <img
-                            src="${person.image}"
-                            alt="${person.name}"
-                            class="w-20 h-20 object-cover border border-slate-800 rounded-sm"
-                            loading="lazy"
-                        >
-                    ` : ""}
-
-                    <div class="flex-1 min-w-0">
-                        <h3 class="text-xl font-display text-white">
-                            ${person.name}
-                        </h3>
-
-                        <p class="text-cyberCyan text-sm mt-1">
-                            ${person.role}
-                        </p>
-
-                        <p class="text-slate-400 text-sm mt-3">
-                            ${person.description}
-                        </p>
-
-                        ${person.tags?.length ? `
-                            <div class="flex flex-wrap gap-2 mt-4">
-                                ${person.tags.map(tag => `
-                                    <span class="text-xs border border-slate-800 px-2 py-1 text-slate-300">
-                                        ${tag}
-                                    </span>
-                                `).join("")}
-                            </div>
-                        ` : ""}
-
-                        ${person.link ? `
-                            <a
-                                href="${person.link}"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="inline-block mt-4 text-cyberCyan text-sm hover:underline"
-                            >
-                                View Profile →
-                            </a>
-                        ` : ""}
-                    </div>
-                </div>
-            </article>
-        `).join("");
-    }
-
-    modal.classList.remove("hidden");
-    modal.classList.add("flex");
-    document.body.style.overflow = "hidden";
-}
-
-function closeDirectoryModal() {
-    const modal = document.getElementById("directoryModal");
-    if (!modal) return;
-
-    modal.classList.add("hidden");
-    modal.classList.remove("flex");
-    document.body.style.overflow = "";
-}
-
-document.addEventListener("keydown", event => {
-    if (event.key === "Escape") {
-        closeDirectoryModal();
-    }
-});
-</script>
-</script>
-
     </script>
     <script src="js/security.js"></script>
 </body>
