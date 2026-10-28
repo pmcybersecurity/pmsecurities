@@ -196,5 +196,355 @@
     }
 }
 </style>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PM Security | Course Payment</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    :root {
+      --bg: #0b111e;
+      --panel: rgba(17, 27, 44, 0.85);
+      --border: #26354b;
+      --cyan: #00f0ff;
+      --text: #e8f0fc;
+      --muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 24px;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at top, #142840 0, transparent 45%),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, sans-serif;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 540px;
+      padding: 32px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 20px 70px #0005;
+    }
+
+    .brand {
+      color: var(--cyan);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(26px, 5vw, 34px);
+    }
+
+    .subtitle {
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    label {
+      display: block;
+      margin: 20px 0 9px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    select,
+    input,
+    textarea {
+      width: 100%;
+      padding: 13px 14px;
+      background: #0b1422;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font: inherit;
+      outline: none;
+    }
+
+    select:focus,
+    input:focus,
+    textarea:focus {
+      border-color: var(--cyan);
+    }
+
+    option {
+      background: #0b1422;
+    }
+
+    .course-info {
+      margin-top: 16px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: #0b1422;
+    }
+
+    .course-info h2 {
+      font-size: 18px;
+      margin: 0 0 8px;
+    }
+
+    .course-info p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 22px;
+      background: var(--cyan);
+      color: #06111b;
+      border: 0;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .status {
+      margin-top: 18px;
+      padding: 12px;
+      border-radius: 8px;
+      background: #0b1422;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .footer {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <div class="brand">PM SECURITY</div>
+
+    <h1>Course Registration</h1>
+
+    <p class="subtitle">
+      Select your cybersecurity course and submit your registration details.
+    </p>
+
+    <form id="paymentForm">
+      <label for="courseSelect">Select a course</label>
+
+      <select id="courseSelect" required>
+        <option value="">Loading courses...</option>
+      </select>
+
+      <section id="courseInfo" class="course-info hidden">
+        <h2 id="courseTitle"></h2>
+        <p id="courseType"></p>
+        <p id="courseDescription" style="margin-top: 8px;"></p>
+      </section>
+
+      <label for="studentName">Full name</label>
+      <input
+        id="studentName"
+        type="text"
+        placeholder="Enter your full name"
+        autocomplete="name"
+        required
+      >
+
+      <label for="studentEmail">Email address</label>
+      <input
+        id="studentEmail"
+        type="email"
+        placeholder="you@example.com"
+        autocomplete="email"
+        required
+      >
+
+      <label for="paymentReference">Payment reference (if already paid)</label>
+      <input
+        id="paymentReference"
+        type="text"
+        placeholder="Transaction ID or UTR"
+      >
+
+      <button id="submitButton" class="button" type="submit" disabled>
+        Submit Registration
+      </button>
+    </form>
+
+    <div id="status" class="status" role="status" aria-live="polite">
+      Connecting to the course database...
+    </div>
+
+    <div class="footer">
+      PM Security · Cybersecurity Education
+    </div>
+  </main>
+
+  <script>
+    // Your Supabase project configuration
+    const SUPABASE_URL =
+      "https://dxabaafoboaoawwmignq.supabase.co";
+
+    const SUPABASE_ANON_KEY =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGciOiJIUzI1NiIsInJlZiI6ImR4YWJhYWZvYm9hb2F3d21pZ25xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAyMjY1MzgsImV4cCI6MjA5NTgwMjUzOH0.pBazFISQbM1srXh5GSSf2GU7uKz0qhYgl_eB67RvJUc";
+
+    const _supabase = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_ANON_KEY
+    );
+
+    const courseSelect = document.getElementById("courseSelect");
+    const courseInfo = document.getElementById("courseInfo");
+    const courseTitle = document.getElementById("courseTitle");
+    const courseType = document.getElementById("courseType");
+    const courseDescription = document.getElementById("courseDescription");
+    const paymentForm = document.getElementById("paymentForm");
+    const submitButton = document.getElementById("submitButton");
+    const statusBox = document.getElementById("status");
+
+    let courses = [];
+
+    function setStatus(message) {
+      statusBox.textContent = message;
+    }
+
+    // Fetch courses from Supabase
+    async function fetchCoursesFromDatabase() {
+      courseSelect.innerHTML =
+        '<option value="">Loading courses...</option>';
+
+      submitButton.disabled = true;
+
+      const { data, error } = await _supabase
+        .from("courses")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (error) {
+        console.error("Course fetch error:", error);
+
+        courseSelect.innerHTML =
+          '<option value="">Unable to load courses</option>';
+
+        setStatus(
+          "Could not load courses. Check your Supabase table, permissions, and internet connection."
+        );
+
+        return;
+      }
+
+      courses = data || [];
+
+      courseSelect.innerHTML =
+        '<option value="">Choose a course</option>';
+
+      courses.forEach((course, index) => {
+        const option = document.createElement("option");
+
+        // Use the row ID where available; otherwise use its array index.
+        option.value = course.id ?? String(index);
+        option.textContent = course.title || "Untitled course";
+
+        courseSelect.appendChild(option);
+      });
+
+      if (courses.length === 0) {
+        courseSelect.innerHTML =
+          '<option value="">No courses available</option>';
+
+        setStatus("No courses were found in the courses table.");
+        return;
+      }
+
+      submitButton.disabled = false;
+      setStatus("Courses loaded successfully. Select a course to continue.");
+    }
+
+    // Display the selected course
+    courseSelect.addEventListener("change", () => {
+      const selectedCourse = courses.find((course, index) => {
+        return String(course.id ?? index) === courseSelect.value;
+      });
+
+      if (!selectedCourse) {
+        courseInfo.classList.add("hidden");
+        return;
+      }
+
+      courseTitle.textContent = selectedCourse.title || "Untitled course";
+      courseType.textContent = selectedCourse.type || "Course";
+      courseDescription.textContent =
+        selectedCourse.description || "No description available.";
+
+      courseInfo.classList.remove("hidden");
+    });
+
+    // Registration demo: this does not yet write to a database.
+    paymentForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const selectedCourse = courses.find((course, index) => {
+        return String(course.id ?? index) === courseSelect.value;
+      });
+
+      if (!selectedCourse) {
+        setStatus("Please select a valid course.");
+        return;
+      }
+
+      const registration = {
+        name: document.getElementById("studentName").value.trim(),
+        email: document.getElementById("studentEmail").value.trim(),
+        course: selectedCourse.title,
+        paymentReference:
+          document.getElementById("paymentReference").value.trim()
+      };
+
+      console.log("Registration details:", registration);
+
+      setStatus(
+        "Form validated. To save registrations, create a registrations table in Supabase and connect this form to it."
+      );
+    });
+
+    fetchCoursesFromDatabase();
+  </script>
+</body>
+</html>
 
 </html>
