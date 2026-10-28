@@ -1,222 +1,29 @@
-<html>
-    <style>
-        body { background-color: #0B111E; color: #E2E8F0; scroll-behavior: smooth; }
-        .grid-bg {
-            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
-        }
-    </style>
-
-<style id="knowledge-search-styles">
-.kb-search-wrapper {
-    max-width: 680px;
-    margin: 0 auto 55px;
-    position: relative;
-    z-index: 20;
-}
-
-.kb-search-box {
-    position: relative;
-    display: flex;
-    align-items: center;
-    height: 48px;
-    background: rgba(18, 26, 46, 0.88);
-    border: 1px solid rgba(71, 85, 105, 0.7);
-    border-radius: 999px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(14px);
-    transition: all 0.3s ease;
-}
-
-.kb-search-box:focus-within {
-    border-color: rgba(0, 240, 255, 0.7);
-    box-shadow:
-        0 0 0 3px rgba(0, 240, 255, 0.07),
-        0 12px 45px rgba(0, 240, 255, 0.08);
-    transform: translateY(-1px);
-}
-
-.kb-search-icon {
-    color: #00F0FF;
-    font-size: 22px;
-    margin-left: 18px;
-    margin-right: 10px;
-    line-height: 1;
-}
-
-#kb-search {
-    width: 100%;
-    height: 100%;
-    border: none;
-    outline: none;
-    background: transparent;
-    color: #E2E8F0;
-    font-size: 13px;
-    padding-right: 45px;
-}
-
-#kb-search::placeholder {
-    color: #64748B;
-}
-
-#kb-search-clear {
-    position: absolute;
-    right: 17px;
-    color: #64748B;
-    font-size: 19px;
-    cursor: pointer;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.2s ease;
-}
-
-#kb-search-clear.active {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-#kb-search-clear:hover {
-    color: #FF4A5A;
-}
-
-.kb-search-results {
-    position: absolute;
-    top: 58px;
-    left: 0;
-    right: 0;
-    max-height: 390px;
-    overflow-y: auto;
-    background: rgba(11, 17, 30, 0.97);
-    border: 1px solid rgba(51, 65, 85, 0.9);
-    border-radius: 18px;
-    padding: 8px;
-    backdrop-filter: blur(18px);
-    box-shadow:
-        0 25px 70px rgba(0, 0, 0, 0.55),
-        0 0 30px rgba(0, 240, 255, 0.04);
-}
-
-.kb-search-results::-webkit-scrollbar {
-    width: 5px;
-}
-
-.kb-search-results::-webkit-scrollbar-thumb {
-    background: #334155;
-    border-radius: 999px;
-}
-
-.kb-result-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 18px;
-    padding: 14px 16px;
-    border: 1px solid transparent;
-    border-radius: 13px;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    animation: kbResultIn 0.25s ease both;
-}
-
-.kb-result-card:hover {
-    background: rgba(18, 26, 46, 0.9);
-    border-color: rgba(0, 240, 255, 0.22);
-    transform: translateX(3px);
-}
-
-.kb-result-info {
-    min-width: 0;
-}
-
-.kb-result-title {
-    color: #F8FAFC;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.kb-result-category {
-    margin-top: 4px;
-    color: #64748B;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-}
-
-.kb-result-arrow {
-    flex-shrink: 0;
-    color: #00F0FF;
-    font-size: 12px;
-    font-weight: 700;
-}
-
-.kb-no-results {
-    padding: 28px 18px;
-    text-align: center;
-    color: #64748B;
-    font-size: 12px;
-}
-
-.kb-no-results strong {
-    display: block;
-    color: #CBD5E1;
-    margin-bottom: 5px;
-}
-
-@keyframes kbResultIn {
-    from {
-        opacity: 0;
-        transform: translateY(-5px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@media (max-width: 640px) {
-    .kb-search-wrapper {
-        margin-bottom: 40px;
-    }
-
-    .kb-search-box {
-        height: 46px;
-    }
-
-    .kb-search-results {
-        max-height: 320px;
-    }
-
-    .kb-result-card {
-        padding: 13px;
-    }
-}
-</style>
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PM Security | Course Payment</title>
+  <meta name="theme-color" content="#0B111E">
+  <title>PM Security | Course Registration</title>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
     :root {
-      --bg: #0b111e;
+      --bg: #0B111E;
       --panel: rgba(17, 27, 44, 0.85);
       --border: #26354b;
-      --cyan: #00f0ff;
-      --text: #e8f0fc;
-      --muted: #94a3b8;
+      --cyan: #00F0FF;
+      --text: #E2E8F0;
+      --muted: #94A3B8;
     }
 
     * {
       box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -232,6 +39,13 @@
       font-family: Inter, system-ui, sans-serif;
     }
 
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
     .container {
       width: 100%;
       max-width: 540px;
@@ -240,6 +54,7 @@
       border: 1px solid var(--border);
       border-radius: 14px;
       box-shadow: 0 20px 70px #0005;
+      backdrop-filter: blur(14px);
     }
 
     .brand {
@@ -269,8 +84,7 @@
     }
 
     select,
-    input,
-    textarea {
+    input {
       width: 100%;
       padding: 13px 14px;
       background: #0b1422;
@@ -279,12 +93,17 @@
       border-radius: 8px;
       font: inherit;
       outline: none;
+      transition: border-color .2s, box-shadow .2s;
     }
 
     select:focus,
-    input:focus,
-    textarea:focus {
+    input:focus {
       border-color: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(0, 240, 255, .07);
+    }
+
+    input::placeholder {
+      color: #64748B;
     }
 
     option {
@@ -296,7 +115,7 @@
       padding: 16px;
       border: 1px solid var(--border);
       border-radius: 9px;
-      background: #0b1422;
+      background: rgba(11, 20, 34, .85);
     }
 
     .course-info h2 {
@@ -309,6 +128,16 @@
       font-size: 14px;
       line-height: 1.6;
       margin: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .course-type {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: var(--cyan);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
     }
 
     .button {
@@ -322,16 +151,23 @@
       font-size: 15px;
       font-weight: 800;
       cursor: pointer;
+      transition: transform .2s, box-shadow .2s, opacity .2s;
+    }
+
+    .button:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 240, 255, .16);
     }
 
     .button:disabled {
-      opacity: 0.5;
+      opacity: .5;
       cursor: not-allowed;
     }
 
     .status {
       margin-top: 18px;
       padding: 12px;
+      border: 1px solid var(--border);
       border-radius: 8px;
       background: #0b1422;
       color: var(--muted);
@@ -340,8 +176,18 @@
       overflow-wrap: anywhere;
     }
 
+    .status.success {
+      border-color: rgba(34, 197, 94, .4);
+      color: #86efac;
+    }
+
+    .status.error {
+      border-color: rgba(248, 113, 113, .4);
+      color: #fca5a5;
+    }
+
     .hidden {
-      display: none;
+      display: none !important;
     }
 
     .footer {
@@ -350,10 +196,29 @@
       font-size: 12px;
       color: var(--muted);
     }
+
+    .privacy-note {
+      margin-top: 14px;
+      color: #64748B;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 14px;
+      }
+
+      .container {
+        padding: 23px 19px;
+      }
+    }
   </style>
 </head>
 
-<body>
+<body class="grid-bg">
+
   <main class="container">
     <div class="brand">PM SECURITY</div>
 
@@ -361,54 +226,80 @@
 
     <p class="subtitle">
       Select your cybersecurity course and submit your registration details.
+      Our team will review your registration.
     </p>
 
     <form id="paymentForm">
+
       <label for="courseSelect">Select a course</label>
 
-      <select id="courseSelect" required>
+      <select id="courseSelect" required disabled>
         <option value="">Loading courses...</option>
       </select>
 
       <section id="courseInfo" class="course-info hidden">
+        <span id="courseType" class="course-type"></span>
         <h2 id="courseTitle"></h2>
-        <p id="courseType"></p>
-        <p id="courseDescription" style="margin-top: 8px;"></p>
+        <p id="courseDescription"></p>
       </section>
 
       <label for="studentName">Full name</label>
       <input
         id="studentName"
+        name="name"
         type="text"
         placeholder="Enter your full name"
         autocomplete="name"
+        maxlength="120"
         required
       >
 
       <label for="studentEmail">Email address</label>
       <input
         id="studentEmail"
+        name="email"
         type="email"
         placeholder="you@example.com"
         autocomplete="email"
+        maxlength="254"
         required
       >
 
-      <label for="paymentReference">Payment reference (if already paid)</label>
+      <label for="paymentReference">Payment UTR / Transaction Reference</label>
       <input
         id="paymentReference"
+        name="utr"
         type="text"
-        placeholder="Transaction ID or UTR"
+        placeholder="Enter your payment UTR"
+        maxlength="100"
+        required
       >
 
-      <button id="submitButton" class="button" type="submit" disabled>
+      <button
+        id="submitButton"
+        class="button"
+        type="submit"
+        disabled
+      >
         Submit Registration
       </button>
+
     </form>
 
-    <div id="status" class="status" role="status" aria-live="polite">
-      Connecting to the course database...
+    <div
+      id="status"
+      class="status"
+      role="status"
+      aria-live="polite"
+    >
+      Connecting to the database...
     </div>
+
+    <p class="privacy-note">
+      Your registration details are submitted securely through the
+      PM Security registration form. Do not submit passwords or other
+      confidential account information.
+    </p>
 
     <div class="footer">
       PM Security · Cybersecurity Education
@@ -416,16 +307,24 @@
   </main>
 
   <script>
-    // Your Supabase project configuration
+    // --------------------------------------------------
+    // SUPABASE CONFIGURATION
+    // --------------------------------------------------
+
     const SUPABASE_URL =
       "https://dxabaafoboaoawwmignq.supabase.co";
 
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4YWJhYWZvYm9hb2F3d21pZ25xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAyMjY1MzgsImV4cCI6MjA5NTgwMjUzOH0.pBazFISQbM1srXh5GSSf2GUu7Kz0qhYgl_eB67RvJUc"
-      
+    const SUPABASE_ANON_KEY =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGciOiJIUzI1NiIsInJlZiI6ImR4YWJhYWZvYm9hb2F3d21pZ25xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAyMjY1MzgsImV4cCI6MjA5NTgwMjUzOH0.pBazFISQbM1srXh5GSSf2GUu7Kz0qhYgl_eB67RvJUc";
+
     const _supabase = window.supabase.createClient(
       SUPABASE_URL,
       SUPABASE_ANON_KEY
     );
+
+    // --------------------------------------------------
+    // ELEMENTS
+    // --------------------------------------------------
 
     const courseSelect = document.getElementById("courseSelect");
     const courseInfo = document.getElementById("courseInfo");
@@ -437,17 +336,34 @@
     const statusBox = document.getElementById("status");
 
     let courses = [];
+    let isSubmitting = false;
 
-    function setStatus(message) {
+    // --------------------------------------------------
+    // STATUS MESSAGE
+    // --------------------------------------------------
+
+    function setStatus(message, type = "") {
       statusBox.textContent = message;
+      statusBox.className = "status";
+
+      if (type) {
+        statusBox.classList.add(type);
+      }
     }
 
-    // Fetch courses from Supabase
+    // --------------------------------------------------
+    // FETCH COURSES
+    //
+    // This reads the courses table only.
+    // It never reads registrations.
+    // --------------------------------------------------
+
     async function fetchCoursesFromDatabase() {
+      courseSelect.disabled = true;
+      submitButton.disabled = true;
+
       courseSelect.innerHTML =
         '<option value="">Loading courses...</option>';
-
-      submitButton.disabled = true;
 
       const { data, error } = await _supabase
         .from("courses")
@@ -461,7 +377,8 @@
           '<option value="">Unable to load courses</option>';
 
         setStatus(
-          "Could not load courses. Check your Supabase table, permissions, and internet connection."
+          "Unable to load courses. Check the courses table permissions and your internet connection.",
+          "error"
         );
 
         return;
@@ -475,8 +392,8 @@
       courses.forEach((course, index) => {
         const option = document.createElement("option");
 
-        // Use the row ID where available; otherwise use its array index.
-        option.value = course.id ?? String(index);
+        // Use the row ID if available.
+        option.value = String(course.id ?? index);
         option.textContent = course.title || "Untitled course";
 
         courseSelect.appendChild(option);
@@ -486,15 +403,23 @@
         courseSelect.innerHTML =
           '<option value="">No courses available</option>';
 
-        setStatus("No courses were found in the courses table.");
+        setStatus("No courses are currently available.");
+
         return;
       }
 
+      courseSelect.disabled = false;
       submitButton.disabled = false;
-      setStatus("Courses loaded successfully. Select a course to continue.");
+
+      setStatus(
+        "Courses loaded successfully. Select a course to continue."
+      );
     }
 
-    // Display the selected course
+    // --------------------------------------------------
+    // DISPLAY SELECTED COURSE
+    // --------------------------------------------------
+
     courseSelect.addEventListener("change", () => {
       const selectedCourse = courses.find((course, index) => {
         return String(course.id ?? index) === courseSelect.value;
@@ -505,45 +430,115 @@
         return;
       }
 
-      courseTitle.textContent = selectedCourse.title || "Untitled course";
-      courseType.textContent = selectedCourse.type || "Course";
+      // textContent prevents course text being interpreted as HTML.
+      courseTitle.textContent =
+        selectedCourse.title || "Untitled course";
+
+      courseType.textContent =
+        selectedCourse.type || "Cybersecurity course";
+
       courseDescription.textContent =
         selectedCourse.description || "No description available.";
 
       courseInfo.classList.remove("hidden");
     });
 
-    // Registration demo: this does not yet write to a database.
+    // --------------------------------------------------
+    // SUBMIT REGISTRATION
+    //
+    // Writes only name, email, and utr.
+    // Does not SELECT from registrations.
+    // --------------------------------------------------
+
     paymentForm.addEventListener("submit", async (event) => {
       event.preventDefault();
+
+      if (isSubmitting) return;
 
       const selectedCourse = courses.find((course, index) => {
         return String(course.id ?? index) === courseSelect.value;
       });
 
       if (!selectedCourse) {
-        setStatus("Please select a valid course.");
+        setStatus("Please select a valid course.", "error");
         return;
       }
 
-      const registration = {
-        name: document.getElementById("studentName").value.trim(),
-        email: document.getElementById("studentEmail").value.trim(),
-        course: selectedCourse.title,
-        paymentReference:
-          document.getElementById("paymentReference").value.trim()
-      };
+      const name = document.getElementById("studentName")
+        .value.trim();
 
-      console.log("Registration details:", registration);
+      const email = document.getElementById("studentEmail")
+        .value.trim();
 
-      setStatus(
-        "Form validated. To save registrations, create a registrations table in Supabase and connect this form to it."
-      );
+      const utr = document.getElementById("paymentReference")
+        .value.trim();
+
+      if (!name || !email || !utr) {
+        setStatus(
+          "Please complete all fields, including your payment UTR.",
+          "error"
+        );
+        return;
+      }
+
+      isSubmitting = true;
+      submitButton.disabled = true;
+      submitButton.textContent = "Submitting...";
+
+      setStatus("Submitting your registration...");
+
+      try {
+        // Only send the columns that exist in your table.
+        const { error } = await _supabase
+          .from("registrations")
+          .insert([
+            {
+              name: name,
+              email: email,
+              utr: utr
+            }
+          ]);
+
+        if (error) {
+          console.error("Registration submission error:", error);
+
+          setStatus(
+            "Registration could not be submitted. Please check your details or contact PM Security.",
+            "error"
+          );
+
+          return;
+        }
+
+        setStatus(
+          "Registration submitted successfully! Your details have been received for review.",
+          "success"
+        );
+
+        paymentForm.reset();
+        courseInfo.classList.add("hidden");
+
+      } catch (error) {
+        console.error("Unexpected submission error:", error);
+
+        setStatus(
+          "An unexpected error occurred. Please try again later.",
+          "error"
+        );
+
+      } finally {
+        isSubmitting = false;
+        submitButton.disabled = false;
+        submitButton.textContent = "Submit Registration";
+      }
     });
+
+    // --------------------------------------------------
+    // INITIALIZE
+    // --------------------------------------------------
 
     fetchCoursesFromDatabase();
   </script>
-</body>
-</html>
 
+</body>
 </html>
