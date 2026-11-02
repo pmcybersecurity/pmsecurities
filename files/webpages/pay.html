@@ -1,1 +1,435 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0B111E">
+
+    <title>Payments | PM. Securities</title>
+    <link rel="icon" href="pm.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0B111E',
+                        cardBg: '#121A2E',
+                        cyberRed: '#FF4A5A',
+                        cyberCyan: '#00F0FF'
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background-color: #0B111E;
+            color: #E2E8F0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+
+            background-image:
+                linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+
+            background-size: 40px 40px;
+        }
+
+        .font-display {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .glass {
+            background: rgba(18, 26, 46, 0.85);
+            backdrop-filter: blur(14px);
+        }
+
+        .payment-card {
+            background: rgba(18, 26, 46, 0.7);
+            border: 1px solid #263248;
+            transition: border-color 0.3s ease;
+        }
+
+        .payment-card:hover {
+            border-color: rgba(0, 240, 255, 0.4);
+        }
+
+        .accent-line {
+            height: 2px;
+            background: linear-gradient(90deg, #00F0FF, #FF4A5A, transparent);
+        }
+
+        .qr-frame {
+            background: white;
+            padding: 14px;
+            display: inline-flex;
+            border-radius: 3px;
+        }
+
+        .qr-frame img {
+            width: 230px;
+            height: 230px;
+            object-fit: contain;
+        }
+
+        .course-select {
+            width: 100%;
+            padding: 15px;
+            background: #0B111E;
+            border: 1px solid #334155;
+            color: #E2E8F0;
+            border-radius: 2px;
+            outline: none;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            cursor: pointer;
+        }
+
+        .course-select:focus {
+            border-color: #00F0FF;
+        }
+
+        .upi-box {
+            background: #0B111E;
+            border: 1px solid #334155;
+            padding: 15px;
+            color: #00F0FF;
+            font-family: 'Space Grotesk', sans-serif;
+            word-break: break-all;
+        }
+
+        @media(max-width: 500px) {
+            .qr-frame img {
+                width: 200px;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body class="flex flex-col min-h-screen">
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50 border-b border-slate-800 glass">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+
+            <a href="index.html"
+               class="font-display font-bold text-xl tracking-wider text-white">
+                PM.<span class="text-cyberRed">SECURITIES</span>
+            </a>
+
+            <span class="text-[10px] sm:text-xs uppercase tracking-widest text-slate-500">
+                Payment Portal
+            </span>
+
+        </div>
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow relative overflow-hidden">
+
+        <!-- Background effects -->
+        <div class="absolute top-32 left-1/4 w-80 h-80 bg-cyberCyan/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="absolute bottom-20 right-1/4 w-80 h-80 bg-cyberRed/5 rounded-full blur-3xl pointer-events-none"></div>
+
+
+        <section class="relative z-10 max-w-5xl mx-auto px-6 py-16 sm:py-24">
+
+            <!-- INTRO -->
+            <div class="text-center mb-14">
+
+                <div class="inline-flex items-center gap-2 px-4 py-2 border border-slate-800 bg-slate-900/60 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase text-cyberCyan mb-6">
+
+                    <span class="w-2 h-2 rounded-full bg-cyberCyan"></span>
+                    PM. Securities Payment Portal
+
+                </div>
+
+                <h1 class="font-display text-4xl sm:text-6xl font-bold text-white mb-5">
+
+                    Make Your
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyberCyan to-cyberRed">
+                        Payment.
+                    </span>
+
+                </h1>
+
+                <p class="text-slate-400 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+
+                    Select your course, check the applicable fee and scan the UPI QR code to complete your payment.
+
+                </p>
+
+            </div>
+
+
+            <!-- PAYMENT GRID -->
+            <div class="grid lg:grid-cols-2 gap-6">
+
+
+                <!-- COURSE SELECTION -->
+                <div class="payment-card rounded-sm p-7 sm:p-9 relative overflow-hidden">
+
+                    <div class="absolute top-0 left-0 w-full accent-line"></div>
+
+                    <div class="text-cyberRed text-[10px] font-bold tracking-[0.25em] uppercase mb-3">
+                        01 / Course Selection
+                    </div>
+
+                    <h2 class="font-display text-2xl font-bold text-white mb-3">
+                        Academy Courses
+                    </h2>
+
+                    <p class="text-slate-500 text-xs leading-relaxed mb-8">
+                        Select the course you wish to enrol in to view its listed price.
+                    </p>
+
+
+                    <label for="course"
+                           class="block text-[10px] uppercase tracking-widest font-bold text-slate-500 mb-3">
+                        Select Your Course
+                    </label>
+
+                    <select id="course" class="course-select">
+
+                        <option value="" selected disabled>
+                            Choose a course...
+                        </option>
+
+                        <!-- ADD / EDIT COURSES BELOW -->
+
+                        <option>
+                            Introduction to Cybersecurity — ₹499
+                        </option>
+
+                        <option>
+                            Web Application Security — ₹999
+                        </option>
+
+                        <option>
+                            Ethical Hacking Fundamentals — ₹1499
+                        </option>
+
+                        <option>
+                            CompTIA Security+ Preparation — ₹1999
+                        </option>
+
+                        <option>
+                            Advanced Web Security — ₹2499
+                        </option>
+
+                        <!-- ADD MORE COURSE OPTIONS HERE -->
+
+                    </select>
+
+
+                    <div class="mt-8 border-t border-slate-800 pt-6">
+
+                        <div class="flex items-center gap-3 mb-4">
+
+                            <div class="w-9 h-9 flex items-center justify-center border border-cyberCyan/20 bg-cyberCyan/5 text-cyberCyan">
+                                <span class="font-display font-bold">₹</span>
+                            </div>
+
+                            <div>
+                                <h3 class="text-sm font-bold text-white">
+                                    Course Pricing
+                                </h3>
+
+                                <p class="text-[10px] text-slate-500">
+                                    Listed prices are in Indian Rupees (INR).
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            Please select the correct course and pay the corresponding amount shown in the dropdown.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- QR CODE -->
+                <div class="payment-card rounded-sm p-7 sm:p-9 text-center relative overflow-hidden">
+
+                    <div class="absolute top-0 left-0 w-full accent-line"></div>
+
+                    <div class="text-cyberCyan text-[10px] font-bold tracking-[0.25em] uppercase mb-3">
+                        02 / UPI Payment
+                    </div>
+
+                    <h2 class="font-display text-2xl font-bold text-white mb-3">
+                        Scan & Pay
+                    </h2>
+
+                    <p class="text-slate-500 text-xs leading-relaxed mb-7">
+                        Open any UPI application and scan the QR code below.
+                    </p>
+
+
+                    <!-- YOUR UPI QR CODE -->
+                    <div class="qr-frame mb-5">
+
+                        <img
+                            src="/../photos/qr.png"
+                            alt="PM Securities UPI QR Code"
+                        >
+
+                    </div>
+
+
+                    <div class="flex items-center justify-center gap-2 text-[10px] text-slate-500 uppercase tracking-widest mb-7">
+
+                        <span class="w-1.5 h-1.5 bg-cyberCyan rounded-full"></span>
+
+                        UPI Accepted
+
+                    </div>
+
+
+                    <!-- UPI ID -->
+                    <div class="text-left">
+
+                        <label class="block text-[10px] uppercase tracking-widest font-bold text-slate-500 mb-3">
+                            UPI ID
+                        </label>
+
+                        <div class="upi-box text-sm">
+                            YOUR_UPI_ID@BANK
+                        </div>
+
+                    </div>
+
+
+                    <div class="grid grid-cols-3 gap-3 mt-7">
+
+                        <div class="border border-slate-800 p-3">
+                            <p class="text-xs font-bold text-white">GPay</p>
+                        </div>
+
+                        <div class="border border-slate-800 p-3">
+                            <p class="text-xs font-bold text-white">PhonePe</p>
+                        </div>
+
+                        <div class="border border-slate-800 p-3">
+                            <p class="text-xs font-bold text-white">Paytm</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- INSTRUCTIONS -->
+            <div class="mt-8 payment-card p-6 sm:p-8 rounded-sm">
+
+                <div class="text-cyberRed text-[10px] font-bold tracking-[0.25em] uppercase mb-5">
+                    03 / Payment Instructions
+                </div>
+
+                <div class="grid sm:grid-cols-3 gap-6">
+
+                    <div>
+                        <span class="font-display text-2xl text-cyberCyan">01</span>
+
+                        <h3 class="text-sm font-bold text-white mt-2 mb-1">
+                            Select Course
+                        </h3>
+
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            Choose your desired course and check its price.
+                        </p>
+                    </div>
+
+                    <div>
+                        <span class="font-display text-2xl text-cyberCyan">02</span>
+
+                        <h3 class="text-sm font-bold text-white mt-2 mb-1">
+                            Scan QR
+                        </h3>
+
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            Scan the displayed QR code using your UPI application.
+                        </p>
+                    </div>
+
+                    <div>
+                        <span class="font-display text-2xl text-cyberCyan">03</span>
+
+                        <h3 class="text-sm font-bold text-white mt-2 mb-1">
+                            Complete Payment
+                        </h3>
+
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            Enter the selected course fee and complete the payment.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- NOTICE -->
+            <div class="mt-6 border border-slate-800 bg-slate-900/40 p-5 rounded-sm">
+
+                <p class="text-xs text-slate-500 leading-relaxed">
+
+                    <span class="text-cyberRed font-bold">IMPORTANT:</span>
+
+                    Verify the recipient's UPI ID and amount before confirming your payment. Never share your UPI PIN or OTP with anyone. For enrolment assistance, contact PM. Securities through its official communication channels.
+
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-900 bg-slate-950/80 py-8">
+
+        <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+
+            <span class="font-display font-bold tracking-wider text-sm text-slate-400">
+                PM. SECURITIES
+            </span>
+
+            <p class="text-[10px] text-slate-600">
+                © 2026 PM. Securities. All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>
+
