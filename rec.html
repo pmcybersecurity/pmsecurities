@@ -1,1 +1,346 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0B111E">
+  <title>Recordings | PM. Securities</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            display: ['Space Grotesk', 'sans-serif']
+          },
+          colors: {
+            darkBg: '#0B111E',
+            cardBg: '#121A2E',
+            cyberRed: '#FF4A5A',
+            cyberCyan: '#00F0FF'
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    :root {
+      --dark-bg: #0B111E;
+      --card-bg: #121A2E;
+      --cyan: #00F0FF;
+      --red: #FF4A5A;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: #E2E8F0;
+      background-color: var(--dark-bg);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(255,255,255,.027) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.027) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .recording-card {
+      background: rgba(18,26,46,.76);
+      border: 1px solid rgba(51,65,85,.72);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: border-color .28s ease, transform .28s ease, box-shadow .28s ease;
+    }
+    .recording-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(0,240,255,.48);
+      box-shadow: 0 18px 50px rgba(0,0,0,.28), 0 0 24px rgba(0,240,255,.055);
+    }
+    .recording-card:nth-child(even):hover { border-color: rgba(255,74,90,.48); }
+    .thumb {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 18% 20%, rgba(0,240,255,.22), transparent 34%),
+        radial-gradient(circle at 85% 85%, rgba(255,74,90,.2), transparent 36%),
+        linear-gradient(135deg, #17243b, #0b111e 72%);
+    }
+    .thumb::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: .45;
+      background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+      background-size: 24px 24px;
+      mask-image: linear-gradient(to bottom, black, transparent);
+    }
+    .thumb-mark {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      font: 700 clamp(42px, 6vw, 66px)/1 'Space Grotesk', sans-serif;
+      letter-spacing: -.08em;
+      color: rgba(226,232,240,.9);
+      text-shadow: 0 0 28px rgba(0,240,255,.22);
+    }
+    .thumb-mark span { color: var(--cyan); }
+    .play-button {
+      position: absolute;
+      left: 18px;
+      bottom: 16px;
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(0,240,255,.7);
+      border-radius: 50%;
+      color: var(--cyan);
+      background: rgba(11,17,30,.72);
+      backdrop-filter: blur(8px);
+      transition: all .2s ease;
+    }
+    .recording-card:hover .play-button {
+      color: var(--dark-bg);
+      background: var(--cyan);
+      transform: scale(1.06);
+    }
+    .duration {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      padding: 5px 8px;
+      border: 1px solid rgba(148,163,184,.2);
+      border-radius: 2px;
+      color: #E2E8F0;
+      background: rgba(11,17,30,.82);
+      font: 600 10px 'Space Grotesk', sans-serif;
+      letter-spacing: .06em;
+    }
+    .search-shell {
+      max-width: 620px;
+      margin: 0 auto;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 17px;
+      border: 1px solid rgba(71,85,105,.7);
+      border-radius: 999px;
+      background: rgba(18,26,46,.86);
+      box-shadow: 0 12px 40px rgba(0,0,0,.2);
+      backdrop-filter: blur(14px);
+      transition: .25s ease;
+    }
+    .search-shell:focus-within {
+      border-color: rgba(0,240,255,.68);
+      box-shadow: 0 0 0 3px rgba(0,240,255,.07), 0 12px 40px rgba(0,240,255,.06);
+    }
+    .search-shell input {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      outline: 0;
+      color: #E2E8F0;
+      background: transparent;
+      font-size: 12px;
+    }
+    .search-shell input::placeholder { color: #64748B; }
+    .meta-dot { width: 3px; height: 3px; border-radius: 50%; background: #64748B; }
+    .accent-line {
+      height: 1px;
+      background: linear-gradient(90deg, var(--cyan), rgba(0,240,255,0), var(--red));
+      opacity: .55;
+    }
+    .empty-state { display: none; }
+    .empty-state.visible { display: block; }
+    @media (max-width: 640px) {
+      .page-heading { font-size: 2.45rem; }
+      .recording-card:hover { transform: none; }
+    }
+  </style>
+</head>
+<body class="grid-bg antialiased">
+  <header class="sticky top-0 z-40 border-b border-slate-800/90 bg-darkBg/85 backdrop-blur-xl">
+    <div class="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-5 sm:px-7">
+      <a href="index.html" class="font-display text-xl font-bold tracking-wider text-white sm:text-2xl">
+        PM.<span class="text-cyberRed">SECURITIES</span>
+      </a>
+      <a href="index.html" class="border border-slate-700 px-4 py-2 text-[10px] font-bold uppercase tracking-[.16em] text-slate-300 transition hover:border-cyberCyan hover:text-cyberCyan">
+        ← Back to Home
+      </a>
+    </div>
+  </header>
+
+  <main class="relative mx-auto max-w-7xl px-5 pb-24 pt-16 sm:px-7 sm:pt-24">
+    <div class="pointer-events-none absolute left-[8%] top-20 h-64 w-64 rounded-full bg-cyberCyan/5 blur-[100px]"></div>
+    <div class="pointer-events-none absolute right-[8%] top-56 h-64 w-64 rounded-full bg-cyberRed/5 blur-[100px]"></div>
+
+    <section class="relative z-10 mb-12 text-center sm:mb-14">
+      <div class="mb-5 inline-flex items-center gap-2 rounded-full border border-slate-800 bg-slate-900/60 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.2em] text-slate-400">
+        <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-cyberCyan"></span>
+        PM. Securities · Media Archive
+      </div>
+      <h1 class="page-heading font-display text-5xl font-bold tracking-tight text-white sm:text-6xl">
+        Recorded <span class="bg-gradient-to-r from-cyberCyan to-cyberRed bg-clip-text text-transparent">Sessions.</span>
+      </h1>
+      <p class="mx-auto mt-5 max-w-2xl text-sm leading-7 text-slate-400 sm:text-base">
+        Revisit workshops, technical discussions, demonstrations and learning sessions from the PM. Securities community.
+      </p>
+      <div class="mx-auto mt-8 max-w-[180px] accent-line"></div>
+    </section>
+
+    <section class="relative z-10">
+      <div class="mb-9">
+        <label class="search-shell" for="recording-search">
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00F0FF" stroke-width="1.7" stroke-linecap="round">
+            <circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path>
+          </svg>
+          <input id="recording-search" type="search" placeholder="Search recorded sessions..." autocomplete="off">
+          <span class="font-display text-[9px] uppercase tracking-widest text-slate-600">Search</span>
+        </label>
+      </div>
+
+      <div id="recordings-grid" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"></div>
+      <div id="empty-state" class="empty-state py-16 text-center">
+        <div class="font-display text-xl font-bold text-slate-300">No recordings found</div>
+        <p class="mt-2 text-xs text-slate-500">Try another title or search term.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-900 bg-slate-950/40">
+    <div class="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-7 text-center sm:flex-row sm:items-center sm:justify-between sm:px-7 sm:text-left">
+      <span class="font-display text-xs font-bold tracking-widest text-slate-400">PM.<span class="text-cyberRed">SECURITIES</span></span>
+      <span class="text-[10px] tracking-wide text-slate-600">Research · Learning · Security</span>
+    </div>
+  </footer>
+
+  <script>
+    // Add or edit your recordings here. Keep watchUrl empty until a real recording link is available.
+    const recordings = [
+      {
+        title: "Introduction to Web Application Security",
+        description: "A foundational session exploring how modern web applications are tested and secured.",
+        date: "Add date",
+        duration: "Add duration",
+        presenter: "PM. Securities",
+        mark: "WEB<span>.</span>",
+        watchUrl: ""
+      },
+      {
+        title: "Reconnaissance & OSINT Workshop",
+        description: "A practical walkthrough of information gathering, attack-surface discovery and research methodology.",
+        date: "Add date",
+        duration: "Add duration",
+        presenter: "PM. Securities",
+        mark: "OS<span>INT</span>",
+        watchUrl: ""
+      },
+      {
+        title: "CTF Walkthrough: Authentication",
+        description: "A guided breakdown of authentication concepts and common security testing approaches.",
+        date: "Add date",
+        duration: "Add duration",
+        presenter: "PM. Securities",
+        mark: "CT<span>F</span>",
+        watchUrl: ""
+      },
+      {
+        title: "Network Security Fundamentals",
+        description: "An introduction to network visibility, traffic analysis and common network-level risks.",
+        date: "Add date",
+        duration: "Add duration",
+        presenter: "PM. Securities",
+        mark: "NET<span>.</span>",
+        watchUrl: ""
+      },
+      {
+        title: "Understanding Common Web Vulnerabilities",
+        description: "A technical discussion of vulnerability classes and the principles behind identifying them.",
+        date: "Add date",
+        duration: "Add duration",
+        presenter: "PM. Securities",
+        mark: "VUL<span>N</span>",
+        watchUrl: ""
+      },
+      {
+        title: "Security Research & Learning Session",
+        description: "A community session focused on building research habits and learning through hands-on practice.",
+        date: "Add date",
+        duration: "Add duration",
+        presenter: "PM. Securities",
+        mark: "PM<span>.</span>",
+        watchUrl: ""
+      }
+    ];
+
+    const grid = document.getElementById('recordings-grid');
+    const search = document.getElementById('recording-search');
+    const emptyState = document.getElementById('empty-state');
+
+    function escapeHTML(value) {
+      return String(value).replace(/[&<>"']/g, char => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[char]));
+    }
+
+    function renderRecordings(query = '') {
+      const term = query.trim().toLowerCase();
+      const filtered = recordings.filter(item =>
+        [item.title, item.description, item.presenter, item.date].join(' ').toLowerCase().includes(term)
+      );
+
+      grid.innerHTML = filtered.map((item, index) => {
+        const hasLink = Boolean(item.watchUrl && item.watchUrl.trim());
+        const action = hasLink
+          ? `<a href="${escapeHTML(item.watchUrl)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-bold tracking-wide text-cyberCyan transition hover:text-white">Watch recording <span aria-hidden="true">↗</span></a>`
+          : `<span class="inline-flex cursor-not-allowed items-center gap-2 text-xs font-semibold tracking-wide text-slate-600" title="Add a recording URL in the recordings array">Recording link coming soon <span aria-hidden="true">↗</span></span>`;
+
+        return `
+          <article class="recording-card group" style="animation: cardIn .45s ease both; animation-delay:${index * 55}ms">
+            <div class="thumb">
+              <div class="thumb-mark">${item.mark}</div>
+              <div class="absolute left-4 top-4 rounded-sm border border-slate-600/50 bg-darkBg/65 px-2 py-1 text-[9px] font-bold uppercase tracking-[.18em] text-slate-400">Session archive</div>
+              <div class="play-button" aria-hidden="true">
+                <svg width="13" height="13" viewBox="0 0 14 14" fill="currentColor"><path d="M4 2.2c0-.55.6-.88 1.08-.59l6.1 3.8a.7.7 0 0 1 0 1.18l-6.1 3.8A.7.7 0 0 1 4 9.8V2.2Z"/></svg>
+              </div>
+              <span class="duration">${escapeHTML(item.duration)}</span>
+            </div>
+            <div class="p-5 sm:p-6">
+              <h2 class="font-display text-lg font-bold leading-snug text-white transition group-hover:text-cyberCyan">${escapeHTML(item.title)}</h2>
+              <p class="mt-2 min-h-[48px] text-xs leading-6 text-slate-400">${escapeHTML(item.description)}</p>
+              <div class="my-5 h-px bg-slate-800"></div>
+              <div class="mb-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-[10px] text-slate-500">
+                <span class="inline-flex items-center gap-1.5"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>${escapeHTML(item.date)}</span>
+                <span class="meta-dot"></span>
+                <span>${escapeHTML(item.presenter)}</span>
+              </div>
+              ${action}
+            </div>
+            <div class="h-[2px] w-full bg-gradient-to-r from-cyberCyan/70 via-transparent to-cyberRed/70 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+          </article>`;
+      }).join('');
+
+      emptyState.classList.toggle('visible', filtered.length === 0);
+    }
+
+    search.addEventListener('input', event => renderRecordings(event.target.value));
+    renderRecordings();
+  </script>
+  <style>
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</body>
+</html>
