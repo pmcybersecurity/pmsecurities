@@ -1,1 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pranav Manglani | Founder, PmSecurity</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="icon" type="image/png" href="pm.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: { extend: {
+    fontFamily: { sans: ['Plus Jakarta Sans','sans-serif'], display: ['Space Grotesk','sans-serif'] },
+    colors: { darkBg:'#0B111E', cardBg:'#121A2E', cyberRed:'#FF4A5A', cyberCyan:'#00F0FF' }
+  } }
+}
+</script>
+<style>
+body{background:#0B111E;color:#E2E8F0;scroll-behavior:smooth}
+.grid-bg{background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:40px 40px}
+a:focus-visible,button:focus-visible{outline:2px solid #00F0FF;outline-offset:2px}
+.chip{border:1px solid #1e293b;background:rgba(2,6,23,.6);padding:.4rem .75rem;border-radius:2px;font-size:.78rem;color:#cbd5e1;transition:border-color .2s,color .2s}
+.chip:hover{border-color:#00F0FF;color:#fff}
+.cert-btn{white-space:nowrap}
+</style>
+</head>
+<body class="font-sans antialiased grid-bg">
 
+<header class="border-b border-slate-800 bg-darkBg/80 backdrop-blur-md sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+    <a href="index.html" class="font-display font-bold text-2xl tracking-wider text-white">PM.<span class="text-cyberRed">SECURITIES</span></a>
+    <nav class="hidden md:flex space-x-8 text-sm font-medium text-slate-400">
+      <a href="#achievements" class="hover:text-cyberCyan transition-colors">Achievements</a>
+      <a href="#certifications" class="hover:text-cyberRed transition-colors">Certifications</a>
+      <a href="#work" class="hover:text-cyberCyan transition-colors">Teaching &amp; Writing</a>
+      <a href="#skills" class="hover:text-cyberRed transition-colors">Skills</a>
+    </nav>
+    <a href="index.html" class="border border-slate-800 px-4 py-2 rounded-sm text-xs font-bold tracking-widest uppercase hover:bg-slate-900 text-white transition-all">← Back to site</a>
+  </div>
+</header>
+
+<main class="max-w-6xl mx-auto px-6 py-16">
+
+  <!-- HERO -->
+  <section class="relative border border-slate-800 bg-cardBg/40 p-8 sm:p-12 rounded-sm overflow-hidden mb-20">
+    <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyberCyan via-transparent to-cyberRed"></div>
+    <div class="absolute -top-20 -right-20 w-72 h-72 bg-cyberCyan/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="relative grid md:grid-cols-[1fr_auto] gap-10 items-end">
+      <div>
+        <p class="text-sm text-cyberCyan font-semibold">Profile and credibility</p>
+        <h1 class="font-display text-4xl sm:text-6xl font-bold text-white mt-2 leading-tight">Pranav Manglani</h1>
+        <p class="text-lg text-slate-400 mt-2">Founder at PmSecurity</p>
+        <p class="text-slate-300 text-sm leading-relaxed mt-6 max-w-2xl">
+          Web-security researcher and educator. I compete in CTFs, robotics and web-development contests, and I build free learning material so beginners can start in cybersecurity.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#achievements" class="bg-white text-darkBg font-bold px-6 py-3 rounded-sm hover:bg-slate-200 transition-all text-sm">View achievements</a>
+          <a href="https://pmsecurity.online/courses" target="_blank" rel="noopener" class="border border-cyberCyan bg-cyberCyan/10 text-cyberCyan font-bold px-6 py-3 rounded-sm hover:bg-cyberCyan hover:text-darkBg transition-all text-sm">Browse free courses ↗</a>
+        </div>
+      </div>
+      <dl class="grid grid-cols-3 md:grid-cols-1 gap-6 md:gap-5 text-left md:text-right">
+        <div><dt class="text-xs text-slate-500">Articles written</dt><dd class="font-display text-3xl font-bold text-white">30+</dd></div>
+        <div><dt class="text-xs text-slate-500">Competition podiums</dt><dd class="font-display text-3xl font-bold text-cyberCyan">4</dd></div>
+        <div><dt class="text-xs text-slate-500">CISCE national swims</dt><dd class="font-display text-3xl font-bold text-cyberRed">4×</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements" class="mb-20 scroll-mt-28">
+    <h2 class="font-display text-3xl font-bold text-white">Technical achievements</h2>
+    <p class="text-slate-500 text-sm mt-1 mb-8">Robotics, web development, CTF and Olympiad results.</p>
+    <div id="tech-list" class="space-y-4"></div>
+
+    <h3 class="font-display text-xl font-bold text-white mt-14 mb-4">Co-curricular achievements</h3>
+    <div id="extra-list" class="space-y-4"></div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications" class="mb-20 scroll-mt-28">
+    <h2 class="font-display text-3xl font-bold text-white">Certifications</h2>
+    <p class="text-slate-500 text-sm mt-1 mb-8">Verified credentials and certificates.</p>
+    <div id="cert-list" class="space-y-4"></div>
+  </section>
+
+  <!-- TEACHING & WRITING -->
+  <section id="work" class="mb-20 scroll-mt-28">
+    <h2 class="font-display text-3xl font-bold text-white">Teaching and writing</h2>
+    <div class="grid md:grid-cols-2 gap-6 mt-8">
+      <a href="https://pmsecurity.online/courses" target="_blank" rel="noopener" class="border border-slate-800 bg-cardBg/30 hover:border-cyberCyan p-6 rounded-sm transition-colors block">
+        <h3 class="font-display font-bold text-white text-lg">Courses and free workshops</h3>
+        <p class="text-slate-400 text-sm mt-2 leading-relaxed">I host multiple courses and free workshops at pmsecurity.online/courses.</p>
+        <span class="text-cyberCyan text-xs font-bold mt-4 inline-block">Open courses ↗</span>
+      </a>
+      <a href="https://pmsecurity.online/#knowledgebase" target="_blank" rel="noopener" class="border border-slate-800 bg-cardBg/30 hover:border-cyberRed p-6 rounded-sm transition-colors block">
+        <h3 class="font-display font-bold text-white text-lg">Beginner learning platform</h3>
+        <p class="text-slate-400 text-sm mt-2 leading-relaxed">I built a platform with learning modules that take beginners through cybersecurity step by step.</p>
+        <span class="text-cyberRed text-xs font-bold mt-4 inline-block">Open knowledge base ↗</span>
+      </a>
+    </div>
+    <div class="border border-slate-800 bg-cardBg/30 p-6 rounded-sm mt-6">
+      <h3 class="font-display font-bold text-white text-lg">30+ technical cybersecurity articles</h3>
+      <p class="text-slate-500 text-xs mt-1 mb-4">Topics covered</p>
+      <div id="topics" class="flex flex-wrap gap-2"></div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="scroll-mt-28">
+    <h2 class="font-display text-3xl font-bold text-white">Skills</h2>
+    <div id="skills-grid" class="grid md:grid-cols-3 gap-6 mt-8"></div>
+  </section>
+</main>
+
+<footer class="border-t border-slate-900 bg-slate-950/80 py-8 text-center text-xs text-slate-500">
+  © Pranav Manglani · PmSecurity
+</footer>
+
+<script>
+/* ============================================================
+   EDIT HERE: put each certificate's link in its `src` field.
+   Leave src as "" and the button shows as "Certificate link coming soon".
+   To add another item, copy one { ... } block and paste it in the list.
+   ============================================================ */
+const TECH = [
+  { title:"Maharishi Bot Fiesta", result:"2nd prize (LFR)",            type:"Robotics competition",       src:"/files/cert/maharishi.pdf" },
+  { title:"Constantia Web Genesis", result:"3rd prize",                type:"Web development competition", src:"/files/cert/web.pdf" },
+  { title:"UNI6CTF Tournament",   result:"2nd prize",                  type:"Capture the flag (web hacking)", src:"" },
+  { title:"SOF National Cyber Olympiad", result:"National rank 3rd (UP & UK)", type:"Computer Olympiad",   src:"" },
+  { title:"Technoxian National Robotics Competition", result:"Participation and selection in robo hockey", type:"Robotics competition", src:"" }
+];
+const EXTRA = [
+  { title:"CISCE National Swimmer", result:"Selected 4 times", type:"Swimming", src:"" }
+];
+const CERTS = [
+  { title:"Cisco certification", result:"CISCO/2026", type:"Cisco", src:"/files/cert/eth.pdf" }
+  // { title:"Certificate name", result:"Issuer / year", type:"Category", src:"https://link-to-certificate" },
+];
+const TOPICS = ["Web Application Technologies","Mapping Applications","Bypassing Client-Side Controls","Attacking Authentication","Session Management","Access Controls","Attacking Data Stores","Back-End Components","Application Logic","Cross-Site Scripting (XSS)","Automating Attacks","Exploiting Information Disclosure","Application Architecture / Servers","Source Code Auditing","Active / Passive Reconnaissance (OSINT, Nmap)","Open Redirect","HTTP Parameter Pollution","CSRF","HTML Injection","CRLF Injection","Template Injection","SQL Injection","SSRF","RCE","Memory Vulnerabilities","Subdomain Takeovers","IDOR"];
+const SKILLS = {
+  "Offensive security":["Penetration Testing","Exploiting Applications","Exploiting Networks","Social Engineering","Pentesting Tools","IoT Security","Ethical Hacking"],
+  "Assessment and defence":["Vulnerability Assessment","Vulnerability Scanning","Reporting","Cyber Best Practices","Privacy and Data Confidentiality","Network Vulnerabilities","Cybersecurity","Threat Detection"],
+  "Networking":["Protocols Standards","Application Layer Services","Network Media","Wireless Access","Network Types","IPv4 Addresses"]
+};
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function row(i){
+  const btn = i.src
+    ? `<a href="${esc(i.src)}" target="_blank" rel="noopener" class="cert-btn border border-cyberCyan text-cyberCyan hover:bg-cyberCyan hover:text-darkBg transition-all px-4 py-2 text-xs font-bold rounded-sm">View certificate ↗</a>`
+    : `<span class="cert-btn border border-slate-800 text-slate-500 px-4 py-2 text-xs rounded-sm" title="Add the link in the src field">Certificate link coming soon</span>`;
+  return `<article class="border border-slate-800 bg-cardBg/30 hover:border-slate-600 transition-colors p-5 rounded-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div class="min-w-0">
+      <h3 class="font-display text-white text-lg font-bold">${esc(i.title)}</h3>
+      <p class="text-cyberCyan text-sm font-medium mt-0.5">${esc(i.result)}</p>
+      <p class="text-slate-500 text-xs mt-1">${esc(i.type)}</p>
+    </div>${btn}</article>`;
+}
+document.getElementById('tech-list').innerHTML  = TECH.map(row).join('');
+document.getElementById('extra-list').innerHTML = EXTRA.map(row).join('');
+document.getElementById('cert-list').innerHTML  = CERTS.map(row).join('');
+document.getElementById('topics').innerHTML     = TOPICS.map(t => `<span class="chip">${esc(t)}</span>`).join('');
+document.getElementById('skills-grid').innerHTML = Object.entries(SKILLS).map(([g,list]) =>
+  `<div class="border border-slate-800 bg-cardBg/30 p-6 rounded-sm">
+     <h3 class="font-display font-bold text-white text-lg mb-4">${esc(g)}</h3>
+     <div class="flex flex-wrap gap-2">${list.map(s=>`<span class="chip">${esc(s)}</span>`).join('')}</div>
+   </div>`).join('');
+</script>
+</body>
+</html>
