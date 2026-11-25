@@ -143,13 +143,10 @@ a:focus-visible,button:focus-visible{outline:2px solid #00F0FF;outline-offset:2p
 </footer>
 
 <script>
-/* ============================================================
-   EDIT HERE: put each certificate's link in its `src` field.
-   Leave src as "" and the button shows as "Certificate link coming soon".
-   To add another item, copy one { ... } block and paste it in the list.
-   ============================================================ */
 const TECH = [
+  { title:"Cisco certification", result:"CISCO/2026", type:"Cisco", src:"/files/cert/eth.pdf" },
   { title:"Maharishi Bot Fiesta", result:"2nd prize (LFR)",            type:"Robotics competition",       src:"/files/cert/maharishi.pdf" },
+  { title:"Maharishi Bot Fiesta", result:"2nd prize (LFR)",            type:"Robotics competition",       src:"/files/cert/maharishi.pdf" }, { title:"Technoxian National Robotics Competition", result:"Participation",            type:"Robotics competition",       src:"/files/cert/techn.pdf" },
   { title:"Constantia Web Genesis", result:"3rd prize",                type:"Web development competition", src:"/files/cert/web.pdf" },
   { title:"UNI6CTF Tournament",   result:"2nd prize",                  type:"Capture the flag (web hacking)", src:"" },
   { title:"SOF National Cyber Olympiad", result:"National rank 3rd (UP & UK)", type:"Computer Olympiad",   src:"/files/cert/sof.pdf" },
@@ -159,8 +156,6 @@ const EXTRA = [
   { title:"CISCE National Swimmer", result:"Selected 4 times", type:"Swimming", src:"" }
 ];
 const CERTS = [
-  { title:"Cisco certification", result:"CISCO/2026", type:"Cisco", src:"/files/cert/eth.pdf" }
-  // { title:"Certificate name", result:"Issuer / year", type:"Category", src:"https://link-to-certificate" },
 ];
 const TOPICS = ["Web Application Technologies","Mapping Applications","Bypassing Client-Side Controls","Attacking Authentication","Session Management","Access Controls","Attacking Data Stores","Back-End Components","Application Logic","Cross-Site Scripting (XSS)","Automating Attacks","Exploiting Information Disclosure","Application Architecture / Servers","Source Code Auditing","Active / Passive Reconnaissance (OSINT, Nmap)","Open Redirect","HTTP Parameter Pollution","CSRF","HTML Injection","CRLF Injection","Template Injection","SQL Injection","SSRF","RCE","Memory Vulnerabilities","Subdomain Takeovers","IDOR"];
 const SKILLS = {
